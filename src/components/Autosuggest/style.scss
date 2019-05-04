@@ -1,0 +1,11 @@
+.autosuggestContainer {
+    flex-grow: 1;
+    position: relative;
+
+    .autosuggestDropMenuPaper {
+        position: absolute;
+        z-index: 2;
+        left: 0;
+        right: 0;
+    }
+}

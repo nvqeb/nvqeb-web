@@ -1,0 +1,21 @@
+@import "../../styles/colors";
+
+.loader {
+	border: 16px solid $light-gray;
+	border-top: 16px solid $primary-color;
+	border-radius: 50%;
+	width: 100px;
+	height: 100px;
+	animation: spin 1.2s linear infinite;
+}
+
+.loaderSmall {
+	width: 25px;
+	height: 25px;
+	border-width: 8px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

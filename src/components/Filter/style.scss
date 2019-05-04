@@ -1,0 +1,37 @@
+@import "../../styles/flex";
+@import "../../styles/dimentions";
+
+.filterContainer {
+    @include flex(row, start, center);
+
+    width: 100%;
+
+    @media (max-width: $tablet) {
+        @include flex(column, center, start);
+        width: 100vw;
+    }
+
+    .chipContainer {
+        @include flex(row, start, center);
+        flex-wrap: wrap;
+    }
+
+    .chip {
+        margin-right: 12px;
+        margin-top: 8px;
+    }
+
+    .filterAutocompleteContainer {
+        width: 100%;
+    }
+
+    .addFilterContainer {
+        @include flex(row, flex-start, center);
+        border:  dashed 1px gray;
+        border-radius: 15px;
+        height: 30px;
+        margin-bottom: 8px;
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+}

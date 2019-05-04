@@ -1,0 +1,21 @@
+@import "../../../styles/flex";
+@import "../../../styles/colors";
+
+.filterTextFieldContainer {
+    @include flex(column, center, flex-end);
+
+    .filterTextFieldTopBar {
+        @include flex(column, center, flex-end);
+
+        width: 100%;
+        background-color: $primary-color
+    }
+
+    .filterTextFieldContentContainer {
+        @include flex(column, center, flex-end);
+
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 4px;
+    }
+}

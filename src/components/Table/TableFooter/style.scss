@@ -1,0 +1,15 @@
+.footerDiv {
+    padding: 10px;
+    padding-bottom: 14px;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .paginationControl {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+}

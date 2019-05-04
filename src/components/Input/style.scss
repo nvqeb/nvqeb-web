@@ -1,0 +1,42 @@
+@import "../../styles/colors";
+@import "../../styles/flex";
+
+.textInputContainer {
+    @include flex(column, flex-start, flex-start);
+
+    label {
+        margin-left: 0.6rem;
+        color: $gray;
+    }
+
+    .textInputElement {
+        min-width: 250px;
+        box-sizing: border-box;
+        margin: 0.5rem;
+        border-radius: 0.5rem;
+        padding: 10px;
+        font-size: 18px;
+
+        border: 2px solid $light-gray;
+        color: $gray;
+
+        &:active {
+            outline: none;
+        }
+
+        &:focus {
+            border: 2px solid $gray;
+            color: $gray;
+            outline: none;
+        }
+    }
+
+    .redBorder {
+        border-color: red;
+    }
+
+    .disabledBackground {
+        background-color: $light-gray;
+        color: gray;
+    }
+}

@@ -1,0 +1,35 @@
+{
+	"passPerPreset": true,
+	"presets": [
+		"@babel/preset-env",
+		// TODO: Fix build for new babel
+		// https://stackoverflow.com/questions/55251983/what-does-this-error-mean-with-usebuiltins-option-required-direct-setting-of
+		// [
+		// 	"@babel/preset-env",
+		// 	{
+		// 		"targets": {
+		// 			// "useBuiltIns": "entry",
+		// 			"corejs": 3
+		// 		},
+		// 		// "useBuiltIns": "entry",
+		// 		"corejs": 3
+		// 	}
+		// ],
+		"@babel/preset-react"
+	],
+	"plugins": [
+		"@babel/plugin-transform-runtime",
+		[
+			"@babel/plugin-proposal-decorators",
+			{
+				"legacy": true
+			}
+		],
+		[
+			"@babel/plugin-proposal-class-properties",
+			{
+				"loose": true
+			}
+		]
+	]
+}

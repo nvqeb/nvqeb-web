@@ -1,0 +1,21 @@
+@import "../../../styles/flex";
+@import "../../../styles/colors";
+
+.filterCheckboxContainer {
+    @include flex(column, center, flex-end);
+
+    .filterCheckboxTopBar {
+        @include flex(column, center, flex-end);
+
+        width: 100%;
+        background-color: $primary-color
+    }
+
+    .filterCheckboxContentContainer {
+        @include flex(column, center, flex-end);
+
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 4px;
+    }
+}

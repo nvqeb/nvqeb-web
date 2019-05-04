@@ -1,0 +1,10 @@
+@import "../../styles/colors";
+
+.linkButton {
+	color: $primary-color;
+	text-decoration: underline;
+}
+
+.linkButton:hover {
+	cursor: pointer;
+}

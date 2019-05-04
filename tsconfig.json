@@ -1,0 +1,49 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "outDir": "./dist/",
+        "module": "esnext",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "target": "es5",
+        "lib": [
+            "es6",
+            "dom",
+            "esnext"
+        ],
+        "sourceMap": true,
+        "allowJs": true,
+        "jsx": "react",
+        "moduleResolution": "node",
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "importHelpers": true,
+        "strictNullChecks": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "noUnusedLocals": false,
+        "experimentalDecorators": true,
+        "noImplicitAny": false,
+        "skipLibCheck": true
+    },
+    "exclude": [
+        "node_modules",
+        "build",
+        "dist",
+        "scripts",
+        "acceptance-tests",
+        "webpack",
+        "jest",
+        "src/setupTests.ts",
+        "next.config.js",
+        "webpack.config.js",
+        "out",
+        "dist",
+        ".cache",
+        ".next",
+        "dev",
+    ],
+    "parcel-plugin-typescript": {
+        "transpileOnly": true
+    }
+}

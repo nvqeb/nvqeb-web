@@ -1,0 +1,37 @@
+@import "../../../styles/flex";
+@import "../../../styles/card";
+
+.professorsPage {
+    @include flex(column, flex-start, center);
+    width: 100%;
+    padding-top: 20px;
+
+    &ProfessorsContainer {
+        @include flex(row, center, center);
+        width: 100%;
+        padding-top: 20px;
+        flex-wrap: wrap;
+
+        &ProfessorCard {
+            @extend %card;
+            @include flex(row, flex-start, center);
+
+            cursor: pointer;
+            width: 300px;
+            margin: 8px;
+
+            &Avatar {
+                border-radius: 50%;
+                object-fit: cover;
+                width: 90px;
+                height: 90px;
+            }
+
+            &InfoContainer {
+                @include flex(column, flex-start, flex-start);
+                height: 100%;
+                margin-left: 8px;
+            }
+        }
+    }
+}

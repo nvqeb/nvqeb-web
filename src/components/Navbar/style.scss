@@ -1,0 +1,26 @@
+@import "../../styles/colors";
+
+.toolbar {
+    background-color: $primary-color;
+
+    .menuIcon {
+        color: white;
+        * {
+            color: white;
+        }
+    }
+
+    .title {
+        color: white;
+        padding-left: 12px;
+    }
+}
+
+.closeButtonContainer {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    padding-top: 10px;
+}

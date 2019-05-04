@@ -1,0 +1,50 @@
+@import "../../../styles/flex";
+@import "../../../styles/card";
+@import "../../../styles/dimentions";
+
+.professorPage {
+    @include flex(column, flex-start, center);
+    width: 100%;
+    padding-top: 20px;
+
+    &ProfessorContainer {
+        @extend %card;
+        margin-top: 20px;
+        width: 60%;
+
+        @media (max-width: $tablet) {
+            width: 80%;
+        }
+
+        @media (max-width: $mobile) {
+            width: 90%;
+        }
+
+        &Avatar {
+            border-radius: 50%;
+            object-fit: cover;
+            width: 120px;
+            height: 120px;
+        }
+
+        &InfoContainer {
+            @include flex(column, center, center);
+            height: 100%;
+            margin: 8px;
+        }
+
+        &ClassesContainer {
+            @include flex(row, center, center);
+            width: 100%;
+            padding-top: 20px;
+            flex-wrap: wrap;
+
+            &ClassCard {
+                @extend %card;
+                @include flex(column, flex-start, flex-start);
+                width: 200px;
+                margin: 8px;
+            }
+        }
+    }
+}

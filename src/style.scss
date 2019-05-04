@@ -1,0 +1,13 @@
+@import "./styles/colors";
+
+* {
+    font-family: 'Muli', sans-serif;
+    color: $text-color;
+}
+
+#app, body, html {
+    margin: 0;
+    padding: 0;
+    background-color: $background-color;
+    height: 100%;
+}
