@@ -30,7 +30,7 @@ export default class SubjectsInfo extends React.Component<IProps> {
 
 		return (
 			<>
-			
+
 			</>
 		);
 	}
