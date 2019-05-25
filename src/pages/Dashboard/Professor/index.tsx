@@ -1,70 +1,48 @@
+// MARK: React
 import * as React from "react";
 import "./style.scss";
 
 // MARK: Router
-import { Route, Switch } from "react-router-dom";
+import { match } from "react-router";
 
-// MARK: Components
-import Typography from "@material-ui/core/Typography";
+// MARK: Mobx
+import { observer, inject } from "mobx-react";
+
+// MARK: Router
+import { Route, Switch } from "react-router-dom";
 
 // MARK: Resources
 import strings from "../../../resources/strings";
 
-interface IClass {
-	name: string;
-	code: string;
-	scores: {
-		min: number;
-		mean: number;
-		max: number;
-	};
+// MARK: Stores
+import ProfessorsStore from "../../../stores/ProfessorsStore";
+import { routerStore } from "../../../stores/_rootStore";
+
+// MARK: Components
+import Typography from "@material-ui/core/Typography";
+
+interface IProps {
+	match: match<{ professorId: string }>;
+	professorsStore: ProfessorsStore;
 }
 
-interface IProfessor {
-	id: string;
-	name: string;
-	avatar: string;
-	hardness: number;
-	classes: IClass[];
-}
+@inject("routerStore", "uiStore", "professorsStore")
+@observer
+export default class ProfessorContainer extends React.Component<IProps> {
+	public componentDidMount = async () => {
+		const { professorId } = this.props.match.params;
 
-export default class ProfessorContainer extends React.Component {
+		this.props.professorsStore.selectProfessor(professorId);
+	}
+
 	public render() {
-		const professor: IProfessor = {
-			id: "1",
-			name: "Julio Guedes",
-			avatar: "/thor.jpg",
-			hardness: 10,
-			classes: [
-				{
-					name: "Física 1",
-					code: "FIS121",
-					scores: {
-						min: 0,
-						mean: 2,
-						max: 6,
-					},
-				},
-				{
-					name: "Física 2",
-					code: "FIS122",
-					scores: {
-						min: 0,
-						mean: 1.5,
-						max: 5,
-					},
-				},
-				{
-					name: "Física 3",
-					code: "FIS123",
-					scores: {
-						min: 0,
-						mean: 1.5,
-						max: 4,
-					},
-				},
-			],
-		};
+		const { selectedProfessor } = this.props.professorsStore;
+
+		if (!selectedProfessor) {
+			routerStore.push("/");
+
+			return <></>;
+		}
 
 		return (
 			<>
@@ -75,25 +53,47 @@ export default class ProfessorContainer extends React.Component {
 					<div className="professorPageProfessorContainer">
 						<img
 							className="professorPageProfessorContainerAvatar"
-							src={professor.avatar}
-							alt={strings.pages.dashboard.professor.professorInfo.avatarAlt(professor.name)}
+							src={selectedProfessor.avatar}
+							alt={strings.pages.dashboard.professor.professorInfo.avatarAlt(selectedProfessor.name)}
 						/>
 						<div className="professorPageProfessorContainerInfoContainer">
 							<Typography variant="h4">
-								{professor.name}
+								{selectedProfessor.name}
 							</Typography>
 							<Typography variant="subtitle2">
-								{strings.pages.dashboard.professor.professorInfo.hardness(professor.hardness)}
+								{strings.pages.dashboard.professor.professorInfo.hardness(selectedProfessor.hardness)}
 							</Typography>
+							<div className="professorPageProfessorContainerInfoContainerTagsContainer">
+								{selectedProfessor.tags.map((tag, index) =>
+									<div
+										key={`${selectedProfessor.id}-tag-${index}`}
+										style={{
+											backgroundColor: ["green", "blue", "gray", "yellow"][index % 4],
+											padding: "4px",
+											margin: "4px",
+											borderRadius: "4px",
+										}}
+									>
+										<Typography
+											variant="subtitle2"
+											>
+											{tag}
+										</Typography>
+									</div>,
+								)}
+							</div>
 						</div>
 						<div className="professorPageProfessorContainerClassesContainer">
-							{professor.classes.map((professorClass) => (
+							{selectedProfessor.classes.map((professorClass) => (
 								<div
 									className="professorPageProfessorContainerClassesContainerClassCard"
-									id={`professorPageProfessorContainerClassesContainerClassCard-${professorClass.code}`}
+									id={`professorPageProfessorContainerClassesContainerClassCard-${professorClass.id}`}
+									onClick={() => {
+										routerStore.push(`/classes/:classId`);
+									}}
 								>
 									<Typography variant="subtitle1">
-										{professorClass.name} - {professorClass.code}
+										{professorClass.name} - {professorClass.id}
 									</Typography>
 									<Typography variant="body1">
 										{strings.pages.dashboard.professor.professorInfo.classes.classCard.scores.min(professorClass.scores.min)}

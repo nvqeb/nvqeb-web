@@ -1,0 +1,9 @@
+{
+    "short_name": "NVQEB",
+    "name": "Não vá que é barril",
+    "gcm_sender_id": "gcm_sender_id",
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#BD64A7",
+    "background_color": "#F8F8F8"
+}

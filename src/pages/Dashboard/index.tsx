@@ -13,6 +13,7 @@ import UIStore from "../../stores/UIStore";
 // MARK: Pages
 import ProfessorsPage from "./Professors";
 import ProfessorPage from "./Professor";
+import SubjectsInfoPage from "./SubjectsInfo";
 
 // MARK: Components
 import Navbar from "../../components/Navbar";
@@ -41,7 +42,9 @@ export default class Dashboard extends React.Component<IProps> {
 				<Toolbar />
 				<Switch>
 					<Route exact path="/" component={ProfessorsPage} />
+					<Route exact path="/professors" component={ProfessorPage} />
 					<Route path="/professors/:professorId" component={ProfessorPage} />
+					<Route path="/classes/:classId" component={SubjectsInfoPage} />
 				</Switch>
 				<Alert uiStore={uiStore} />
 				<Dialog uiStore={uiStore} />
