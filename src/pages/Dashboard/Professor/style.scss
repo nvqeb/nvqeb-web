@@ -33,13 +33,14 @@
             height: 100%;
             margin: 8px;
             width: 80%;
-
+            color: #ffffff;
 
             &TagsContainer {
                 @include flex(row, center, center);
 
                 width: 100%;
                 flex-wrap: wrap;
+                
                 
             }
         }

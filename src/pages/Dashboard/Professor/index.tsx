@@ -76,7 +76,11 @@ export default class ProfessorContainer extends React.Component<IProps> {
 									>
 										<Typography
 											variant="subtitle2"
+											style={{
+												color: "white",
+											}}
 											>
+											{/* Adicionada a cor branca no texto das tags*/}
 											{tag}
 										</Typography>
 									</div>,

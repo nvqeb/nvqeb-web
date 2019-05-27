@@ -46456,7 +46456,10 @@ function (_super) {
           borderRadius: "4px"
         }
       }, React.createElement(_Typography.default, {
-        variant: "subtitle2"
+        variant: "subtitle2",
+        style: {
+          color: "white"
+        }
       }, tag));
     }))), React.createElement("div", {
       className: "professorPageProfessorContainerClassesContainer"
