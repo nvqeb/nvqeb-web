@@ -46315,7 +46315,19 @@ function (_super) {
         routerStore = _a.routerStore,
         professorsStore = _a.professorsStore;
     var professors = professorsStore.professors;
-    return React.createElement(React.Fragment, null, React.createElement("div", {
+    return React.createElement(React.Fragment, null, "\t\t", React.createElement("div", {
+      className: "flexbox"
+    }, React.createElement("div", {
+      className: "flexbox-item",
+      onClick: function onClick() {
+        return routerStore.push("/classes/:classId");
+      }
+    }, "Anterior"), React.createElement("div", {
+      className: "flexbox-item",
+      onClick: function onClick() {
+        return routerStore.push("/classes/:classId");
+      }
+    }, "Pr\xF3ximo")), React.createElement("div", {
       className: "professorsPage"
     }, React.createElement(_Typography.default, {
       variant: "h4"
@@ -54473,6 +54485,13 @@ function (_super) {
       }
     }, React.createElement(_ListItemIcon.default, null, React.createElement(_Dashboard.default, null)), React.createElement(_ListItemText.default, {
       primary: _strings.default.navbar.home
+    })), React.createElement(_ListItem.default, {
+      button: true,
+      onClick: function onClick() {
+        return _this.onItemClick("/");
+      }
+    }, React.createElement(_ListItemIcon.default, null, React.createElement(_Dashboard.default, null)), React.createElement(_ListItemText.default, {
+      primary: _strings.default.navbar.logout
     })))));
   };
 
@@ -95164,7 +95183,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42599" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45539" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

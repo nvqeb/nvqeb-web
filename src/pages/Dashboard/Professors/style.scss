@@ -36,6 +36,12 @@
     }
 }
 
-.Teste{
-    background-color: red;
+.flexbox-item{
+    height: auto;
+    place-content: stretch flex-start; 
+    align-items: stretch;
+    cursor: pointer;
+    background-color:rgb(255, 153, 255);
+    width: 70px;
+    margin-bottom: 5px;
 }

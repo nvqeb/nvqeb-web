@@ -82,7 +82,12 @@ export default class Navbar extends React.Component<IProps, IState> {
                         <ListItem button onClick={() => this.onItemClick("/")}>
                             <ListItemIcon><DashboardIcon /></ListItemIcon>
                             <ListItemText primary={strings.navbar.home} />
-                        </ListItem>
+                            </ListItem>
+                            {/* Criação do botão de logout. Puxei a sting pelo destino "srings.navbar.logout" */}
+                            <ListItem button onClick={() => this.onItemClick("/")}>
+                            <ListItemIcon><DashboardIcon /></ListItemIcon>
+                            <ListItemText primary={strings.navbar.logout} />
+                            </ListItem>
                     </List>
                 </Drawer>
             </>
