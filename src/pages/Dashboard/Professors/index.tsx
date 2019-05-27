@@ -28,7 +28,7 @@ export default class ProfessorsContainer extends React.Component<IProps> {
 	public render() {
 		const { routerStore, professorsStore } = this.props;
 		const { professors } = professorsStore;
-		
+
 		return (
 		<>		{/* Criada a div dos botões. Provavelmente seja necessária alguma alteração quanto à url linkada*/}
 				<div className="flexbox" >

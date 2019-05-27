@@ -68,7 +68,7 @@ export default class ProfessorContainer extends React.Component<IProps> {
 									<div
 										key={`${selectedProfessor.id}-tag-${index}`}
 										style={{
-											backgroundColor: ["green", "blue", "gray", "yellow"][index % 4],
+											backgroundColor: ["pink", "deeppink", "hotpink", "lightpink", "magenta", "violet", "orchid"][index % 7],
 											padding: "4px",
 											margin: "4px",
 											borderRadius: "4px",
