@@ -11,48 +11,23 @@ import strings from "../../../resources/strings";
 // MARK: Stores
 import { RouterStore } from "mobx-react-router";
 import UIStore from "../../../stores/UIStore";
+import ProfessorsStore from "../../../stores/ProfessorsStore";
 
 // MARK: Components
 import Typography from "@material-ui/core/Typography";
 
-interface IProfessor {
-	id: string;
-	name: string;
-	avatar: string;
-	hardness: number;
-}
-
 interface IProps {
 	routerStore: RouterStore;
 	uiStore: UIStore;
+	professorsStore: ProfessorsStore;
 }
 
-@inject("routerStore", "uiStore")
+@inject("routerStore", "uiStore", "professorsStore")
 @observer
 export default class ProfessorsContainer extends React.Component<IProps> {
 	public render() {
-		const { routerStore } = this.props;
-
-		const professors: IProfessor[] = [
-			{
-				id: "1",
-				name: "Julio Guedes",
-				avatar: "/thor.jpg",
-				hardness: 10,
-			},
-			{
-				id: "2",
-				name: "Vaninha",
-				avatar: "/gamora.jpeg",
-				hardness: 2,
-			},
-			{
-				id: "3",
-				name: "Danilo",
-				avatar: "/hulk.jpg",
-				hardness: 4,
-			},
-		];
+		const { routerStore, professorsStore } = this.props;
+		const { professors } = professorsStore;
 
 		return (
 			<>
