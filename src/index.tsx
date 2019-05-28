@@ -14,6 +14,7 @@ const browserHistory = history.createBrowserHistory();
 syncHistoryWithStore(browserHistory, rootStore.routerStore);
 
 // Pages
+import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 
 // Date Picker Config
@@ -31,6 +32,7 @@ ReactDOM.render(
         <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ptBR}>
             <Router history={rootStore.routerStore.history}>
                 <Switch>
+                    <Route path="/login" component={Login}/>
                     <Route path="/" component={Dashboard} />
                 </Switch>
             </Router>

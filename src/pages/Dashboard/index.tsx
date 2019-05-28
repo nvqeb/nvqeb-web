@@ -9,6 +9,7 @@ import { Route, Switch } from "react-router-dom";
 // MARK: Stores
 import { RouterStore } from "mobx-react-router";
 import UIStore from "../../stores/UIStore";
+import AuthStore from "../../stores/AuthStore";
 
 // MARK: Pages
 import ProfessorsPage from "./Professors";
@@ -26,11 +27,16 @@ import LoadingDialog from "../../components/LoadingDialog";
 interface IProps {
 	routerStore: RouterStore;
 	uiStore: UIStore;
+	authStore: AuthStore;
 }
 
-@inject("routerStore", "uiStore")
+@inject("routerStore", "uiStore", "authStore")
 @observer
 export default class Dashboard extends React.Component<IProps> {
+	public componentWillMount = async () => {
+		await this.props.authStore.authenticate();
+	}
+
 	public render() {
 		const { uiStore, routerStore } = this.props;
 

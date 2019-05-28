@@ -77,6 +77,12 @@ const strings = new LocalizedStrings({
                     },
                 },
             },
+            login: {
+                email: "Email",
+                password: "Password",
+                loginButton: "Entrar",
+                resetPasswordButton: "Recuperar Senha",
+            },
         },
         error: {
             default: "Erro de conexão",

@@ -915,9 +915,9 @@
     physical-cpu-count "^2.0.0"
 
 "@startapp/nvqeb-user-api@^1.0.3183":
-  version "1.0.3185"
-  resolved "https://npm.startapp.one/@startapp%2fnvqeb-user-api/-/nvqeb-user-api-1.0.3185.tgz#20b61a90b627b193638f7736ef599b8d59ad9e04"
-  integrity sha512-XMUB1hD26hmzpRLSaISEao1vy+EvyftXbvJq6SMwOzfu3VgNjNnlzN37j1Ui3Vs9XmqaiMio8ogBJuzCAodbuA==
+  version "1.0.3187"
+  resolved "https://npm.startapp.one/@startapp%2fnvqeb-user-api/-/nvqeb-user-api-1.0.3187.tgz#bbdab585fdcde82d40cbbcd3b4fd381d91809d40"
+  integrity sha512-t6rGtnkmYqnLaWaS1dtbY+L+0rmBmux4r2OkOs/PtCgYnUtdt3G/A/I1skmyDPs+C/gAl3BWaZgFa+8xx9UQVg==
   dependencies:
     "@types/node" "^8.0.29"
     "@types/ua-parser-js" "^0.7.32"
