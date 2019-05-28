@@ -39,9 +39,11 @@ interface IState {
     teamOpen: boolean;
 }
 
-@inject("authStore")
+@inject("authStore", "routerStore")
 @observer
 export default class Navbar extends React.Component<IProps, IState> {
+    public static defaultProps: IProps;
+
     public componentWillMount = () => this.setState({ open: false });
     private handleDrawerOpen = () => this.setState({ open: true });
     private handleDrawerClose = () => this.setState({ open: false });

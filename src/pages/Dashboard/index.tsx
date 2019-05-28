@@ -42,9 +42,7 @@ export default class Dashboard extends React.Component<IProps> {
 
 		return (
 			<>
-				<Navbar
-					routerStore={routerStore}
-				/>
+				<Navbar />
 				<Toolbar />
 				<Switch>
 					<Route exact path="/" component={ProfessorsPage} />
