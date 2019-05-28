@@ -54,22 +54,20 @@ export default class AuthStore extends VariableChangeHandler {
 
 	@action
 	public logout = async () => {
-		const onConfirm = async () => {
-			try {
-				await api.logout();
-
-				this.user = null;
-				localStorage.clear();
-
-				routerStore.push("/login");
-			} catch (e) {
-				uiStore.openSnackbar(handleError(e));
-			}
-		};
-
 		uiStore.showDialog(
 			strings.components.dialogs.logout,
-			onConfirm,
+			async () => {
+				try {
+					await api.logout();
+
+					this.user = null;
+					localStorage.clear();
+
+					routerStore.push("/login");
+				} catch (e) {
+					uiStore.openSnackbar(handleError(e));
+				}
+			},
 		);
 	}
 
