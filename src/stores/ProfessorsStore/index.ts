@@ -1,5 +1,11 @@
+// MARK: API
+import * as api from "@startapp/nvqeb-user-api";
+
 // MARK: Mobx
 import { action, observable } from "mobx";
+
+// MARK: Resources
+import strings from "../../resources/strings";
 
 // MARK: Stores
 import { uiStore } from "../_rootStore";
@@ -30,102 +36,68 @@ export interface IComments {
 {/* Tentativa de criar comentário*/}
 
 export default class ProfessorsStore {
-    @observable public selectedProfessor: IProfessor | null = null;
-    @observable public professors: IProfessor[] = [
-        {
-			id: "1",
-			name: "Julio Guedes",
-			avatar: "/thor.jpg",
-			hardness: 10,
-			tags: ["Carrasco", "Possível", "Carrasco", "Possível", "Carrasco", "Possível", "Carrasco", "Possível"],
-			classes: [
-				{
-					name: "Física 1",
-					id: "FIS121",
-					scores: {
-						min: 0,
-						mean: 2,
-						max: 6,
-					},
-				},
-				{
-					name: "Física 2",
-					id: "FIS122",
-					scores: {
-						min: 0,
-						mean: 1.5,
-						max: 5,
-					},
-				},
-				{
-					name: "Física 3",
-					id: "FIS123",
-					scores: {
-						min: 0,
-						mean: 1.5,
-						max: 4,
-					},
-				},
-			],
-        },
-        {
-			id: "2",
-			name: "Vaninha",
-            avatar: "/gamora.jpeg",
-            hardness: 2,
-			tags: ["Mãe", "Ajuda bastante", "Aulas legais"],
-			classes: [
-				{
-					name: "Seminários de Introdução",
-					id: "SIC001",
-					scores: {
-						min: 5,
-						mean: 9,
-						max: 10,
-					},
-				},
-			],
-		},
-		{
-			id: "3",
-			name: "Mathieu",
-            avatar: "/hulk.jpg",
-            hardness: 10,
-			tags: ["Desista"],
-			classes: [
-				{
-					name: "Cálculo A",
-					id: "MATA01",
-					scores: {
-						min: 0,
-						mean: 3,
-						max: 5,
-					},
-				},
-			],
-		},
-		{
-			id: "4",
-			name: "George",
-            avatar: "/miranha.jpg",
-            hardness: 7,
-			tags: ["Brother"],
-			classes: [
-				{
-					name: "Projeto de Circuitos Lógicos",
-					id: "MATA48",
-					scores: {
-						min: 4,
-						mean: 7,
-						max: 9,
-					},
-				},
-			],
-		},
-    ];
+    @observable public selectedProfessor: api.Professor | null = null;
+	@observable public professors: api.Professor[] = [];
+
+	@observable public loading: boolean = false;
+	@observable public pageOffset: number = 0;
 
     @action
-    public selectProfessor = (professorId: string) => {
-        this.selectedProfessor = this.professors.find((professor) => professor.id === professorId) || null;
-    }
+    public selectProfessor = async (professorId: string) => {
+		if (this.loading) {
+            return;
+		}
+
+		this.loading = true;
+
+		try {
+			this.selectedProfessor = this.professors.find((professor) => professor.id === professorId) || await api.getProfessor(professorId);
+		} catch (e) {
+			uiStore.openErrorSnackbar(e);
+		} finally {
+			this.loading = false;
+		}
+	}
+
+	@action
+	public getProfessors = async (pageOffset?: number | number) => {
+		if (this.loading) {
+            return;
+		}
+
+		if (!pageOffset) {
+			pageOffset = this.pageOffset;
+		}
+
+        if (pageOffset < 0) {
+			return;
+		}
+
+		this.loading = true;
+
+        try {
+			const professors = await api.getProfessors(pageOffset);
+
+			if (professors.length > 0) {
+				this.professors = professors;
+				this.pageOffset = pageOffset;
+			} else {
+				uiStore.openSnackbar(strings.error.noMoreResults);
+			}
+        } catch (e) {
+            uiStore.openErrorSnackbar(e);
+        } finally {
+            this.loading = false;
+        }
+	}
+
+	@action
+	public nextPage = async () => {
+		this.getProfessors(this.pageOffset + 1);
+	}
+
+	@action
+	public previousPage = async () => {
+		this.getProfessors(this.pageOffset - 1);
+	}
 }

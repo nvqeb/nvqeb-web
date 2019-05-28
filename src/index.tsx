@@ -14,6 +14,7 @@ const browserHistory = history.createBrowserHistory();
 syncHistoryWithStore(browserHistory, rootStore.routerStore);
 
 // Pages
+import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 
 // Date Picker Config
@@ -23,29 +24,15 @@ import DateFnsUtils from "@date-io/date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 
 // API
-// import * as api from "@startapp/nvqeb-user-api";
-// api.setUrl(process.env.NODE_ENV ?
-//     ((): string => {
-//         switch (process.env.NODE_ENV) {
-//             case "production": {
-//                 return "https://nvqeb.com.br/admin";
-//             }
-//             case "staging": {
-//                 return "https://nvqeb.com.br/admin";
-//             }
-//             default:
-//             case "development": {
-//                 return "https://nvqeb.com.br/admin";
-//             }
-//         }
-//     })() : "https://nvqeb.com.br/admin",
-// );
+import * as api from "@startapp/nvqeb-user-api";
+api.setUrl("https://api.nvqeb.startapp.one");
 
 ReactDOM.render(
     <Provider {...rootStore}>
         <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ptBR}>
             <Router history={rootStore.routerStore.history}>
                 <Switch>
+                    <Route path="/login" component={Login}/>
                     <Route path="/" component={Dashboard} />
                 </Switch>
             </Router>

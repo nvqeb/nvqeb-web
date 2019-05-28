@@ -32,7 +32,7 @@ export default class ProfessorContainer extends React.Component<IProps> {
 	public componentDidMount = async () => {
 		const { professorId } = this.props.match.params;
 
-		this.props.professorsStore.selectProfessor(professorId);
+		await this.props.professorsStore.selectProfessor(professorId);
 	}
 
 	public render() {
@@ -45,61 +45,67 @@ export default class ProfessorContainer extends React.Component<IProps> {
 		}
 
 		return (
-			<>
-				<div className="professorPage">
-					<Typography variant="h4">
-						{strings.pages.dashboard.professor.title}
-					</Typography>
-					<div className="professorPageProfessorContainer">
-						<img
-							className="professorPageProfessorContainerAvatar"
-							src={selectedProfessor.avatar}
-							alt={strings.pages.dashboard.professor.professorInfo.avatarAlt(selectedProfessor.name)}
-						/>
-						<div className="professorPageProfessorContainerInfoContainer">
-							<Typography variant="h4">
-								{selectedProfessor.name}
-							</Typography>
-							<Typography variant="subtitle2">
-								{strings.pages.dashboard.professor.professorInfo.hardness(selectedProfessor.hardness)}
-							</Typography>
-							<div className="professorPageProfessorContainerInfoContainerTagsContainer">
-								{selectedProfessor.tags.map((tag, index) =>
-									<div
-										key={`${selectedProfessor.id}-tag-${index}`}
-										style={{
-											backgroundColor: ["pink", "deeppink", "hotpink", "lightpink", "magenta", "violet", "orchid"][index % 7],
-											padding: "4px",
-											margin: "4px",
-											borderRadius: "4px",
-										}}
-									>
-										<Typography
-											variant="subtitle2"
-											style={{
-												color: "white",
-											}}
-											>
-											{/* Adicionada a cor branca no texto das tags*/}
-											{tag}
-										</Typography>
-									</div>,
-								)}
-							</div>
-						</div>
-						<div className="professorPageProfessorContainerClassesContainer">
-							{selectedProfessor.classes.map((professorClass) => (
+			<div className="professorPage">
+				<Typography variant="h4">
+					{strings.pages.dashboard.professor.title}
+				</Typography>
+				<div className="professorPageProfessorContainer">
+					<img
+						className="professorPageProfessorContainerAvatar"
+						src={selectedProfessor.avatar ? selectedProfessor.avatar.url : "/userPlaceholder.svg"}
+						alt={strings.pages.dashboard.professor.professorInfo.avatarAlt(selectedProfessor.name)}
+					/>
+					<div className="professorPageProfessorContainerInfoContainer">
+						<Typography variant="h4">
+							{selectedProfessor.name}
+						</Typography>
+						<Typography variant="subtitle2">
+							{strings.pages.dashboard.professor.professorInfo.hardness(selectedProfessor.hardness)}
+						</Typography>
+						<div className="professorPageProfessorContainerInfoContainerTagsContainer">
+							{selectedProfessor.tags.map((tag, index) =>
 								<div
+<<<<<<< HEAD
 									className="professorPageProfessorContainerClassesContainerClassCard"
 									id={`professorPageProfessorContainerClassesContainerClassCard-${professorClass.id}`}
 									onClick={() => {
 										routerStore.push(`/classes/SubjectsInfo`);
+=======
+									key={`${selectedProfessor.id}-tag-${index}`}
+									style={{
+										backgroundColor: ["pink", "deeppink", "hotpink", "lightpink", "magenta", "violet", "orchid"][index % 7],
+										padding: "4px",
+										margin: "4px",
+										borderRadius: "4px",
+>>>>>>> cdfa196cf014b9b20b2cf92e721c2e196709a01d
 									}}
 								>
-									<Typography variant="subtitle1">
-										{professorClass.name} - {professorClass.id}
+									<Typography
+										variant="subtitle2"
+										style={{
+											color: "white",
+										}}
+									>
+										{/* Adicionada a cor branca no texto das tags*/}
+										{tag}
 									</Typography>
-									<Typography variant="body1">
+								</div>,
+							)}
+						</div>
+					</div>
+					<div className="professorPageProfessorContainerClassesContainer">
+						{selectedProfessor.schoolClasses.map((schoolClass) => (
+							<div
+								className="professorPageProfessorContainerClassesContainerClassCard"
+								id={schoolClass.id}
+								onClick={() => {
+									routerStore.push(`/classes/${schoolClass.id}`);
+								}}
+							>
+								<Typography variant="subtitle1">
+									{schoolClass.name} - {schoolClass.id}
+								</Typography>
+								{/* <Typography variant="body1">
 										{strings.pages.dashboard.professor.professorInfo.classes.classCard.scores.min(professorClass.scores.min)}
 									</Typography>
 									<Typography variant="body1">
@@ -107,6 +113,7 @@ export default class ProfessorContainer extends React.Component<IProps> {
 									</Typography>
 									<Typography variant="body1">
 										{strings.pages.dashboard.professor.professorInfo.classes.classCard.scores.max(professorClass.scores.max)}
+<<<<<<< HEAD
 									</Typography>
 								</div>
 							))}
@@ -139,9 +146,14 @@ export default class ProfessorContainer extends React.Component<IProps> {
 						))
 						},
 						</div>
+=======
+									</Typography> */}
+							</div>
+						))}
+>>>>>>> cdfa196cf014b9b20b2cf92e721c2e196709a01d
 					</div>
 				</div>
-			</>
+			</div>
 		);
 	}
 }

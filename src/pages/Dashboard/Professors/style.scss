@@ -3,11 +3,20 @@
 
 .professorsPage {
     @include flex(column, flex-start, center);
+
     width: 100%;
     padding-top: 20px;
 
+    &ButtonsContainer {
+        @include flex(row, center, center);
+
+        width: 100%;
+        padding-top: 20px;
+    }
+
     &ProfessorsContainer {
         @include flex(row, center, center);
+
         width: 100%;
         padding-top: 20px;
         flex-wrap: wrap;
@@ -29,19 +38,10 @@
 
             &InfoContainer {
                 @include flex(column, flex-start, flex-start);
+
                 height: 100%;
                 margin-left: 8px;
             }
         }
     }
-}
-
-.flexbox-item{
-    height: auto;
-    place-content: stretch flex-start; 
-    align-items: stretch;
-    cursor: pointer;
-    background-color:rgb(255, 153, 255);
-    width: 70px;
-    margin-bottom: 5px;
 }

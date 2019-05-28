@@ -15,6 +15,7 @@ import ProfessorsStore from "../../../stores/ProfessorsStore";
 
 // MARK: Components
 import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 
 interface IProps {
 	routerStore: RouterStore;
@@ -25,49 +26,49 @@ interface IProps {
 @inject("routerStore", "uiStore", "professorsStore")
 @observer
 export default class ProfessorsContainer extends React.Component<IProps> {
+	public componentWillMount = async () => {
+		const { professorsStore } = this.props;
+		await professorsStore.getProfessors();
+	}
 	public render() {
 		const { routerStore, professorsStore } = this.props;
-		const { professors } = professorsStore;
+		const { professors, pageOffset } = professorsStore;
 
 		return (
-		<>		{/* Criada a div dos botões. Provavelmente seja necessária alguma alteração quanto à url linkada*/}
-				<div className="flexbox" >
-					<div className="flexbox-item"
-					onClick={() => routerStore.push(`/classes/:classId`)}>
-						Anterior</div>
-					<div className="flexbox-item"
-					onClick={() => routerStore.push(`/classes/:classId`)}>
-						Próximo</div>
+			<div className="professorsPage">
+				<div className="professorsPageButtonsContainer">
+					{pageOffset > 0 &&
+						<Button onClick={() => professorsStore.previousPage()}>{strings.buttons.previous}</Button>
+					}
+					<Button onClick={() => professorsStore.nextPage()}>{strings.buttons.next}</Button>
 				</div>
-				<div className="professorsPage">
-					<Typography variant="h4">
-						{strings.pages.dashboard.professors.title}
-					</Typography>
-					<div className="professorsPageProfessorsContainer">
-						{professors.map((professor) => (
-							<div
-								className="professorsPageProfessorsContainerProfessorCard"
-								key={`professorsPageProfessorsContainerProfessorCard-${professor.id}`}
-								onClick={() => routerStore.push(strings.pages.dashboard.professor.path(professor.id))}
-							>
-								<img
-									className="professorsPageProfessorsContainerProfessorCardAvatar"
-									src={professor.avatar}
-									alt={strings.pages.dashboard.professors.professorCard.avatarAlt(professor.name)}
-								/>
-								<div className="professorsPageProfessorsContainerProfessorCardInfoContainer">
-									<Typography variant="subtitle1">
-										{professor.name}
-									</Typography>
-									<Typography variant="body1">
-										{strings.pages.dashboard.professors.professorCard.hardness(professor.hardness)}
-									</Typography>
-								</div>
+				<Typography variant="h4">
+					{strings.pages.dashboard.professors.title}
+				</Typography>
+				<div className="professorsPageProfessorsContainer">
+					{professors.map((professor) => (
+						<div
+							className="professorsPageProfessorsContainerProfessorCard"
+							key={`professorsPageProfessorsContainerProfessorCard-${professor.id}`}
+							onClick={() => routerStore.push(strings.pages.dashboard.professor.path(professor.id))}
+						>
+							<img
+								className="professorsPageProfessorsContainerProfessorCardAvatar"
+								src={professor.avatar ? professor.avatar.url : "/userPlaceholder.svg"}
+								alt={strings.pages.dashboard.professors.professorCard.avatarAlt(professor.name)}
+							/>
+							<div className="professorsPageProfessorsContainerProfessorCardInfoContainer">
+								<Typography variant="subtitle1">
+									{professor.name}
+								</Typography>
+								<Typography variant="body1">
+									{strings.pages.dashboard.professors.professorCard.hardness(professor.hardness)}
+								</Typography>
 							</div>
-						))}
-					</div>
+						</div>
+					))}
 				</div>
-			</>
+			</div>
 		);
 	}
 }

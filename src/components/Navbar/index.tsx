@@ -1,6 +1,12 @@
+// MARK: React
 import * as React from "react";
-import { observer } from "mobx-react";
 import "./style.scss";
+
+// MARK: React
+import { observer, inject } from "mobx-react";
+
+// MARK: Resources
+import strings from "../../resources/strings";
 
 // MARK: Components
 import AppBar from "@material-ui/core/AppBar";
@@ -17,25 +23,27 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import DashboardIcon from "@material-ui/icons/Dashboard";
-import BookIcon from "@material-ui/icons/Book";
-import PersonIcon from "@material-ui/icons/Person";
 import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 
 // MARK: Stores
 import { RouterStore } from "mobx-react-router";
-import strings from "../../resources/strings";
+import AuthStore from "../../stores/AuthStore";
 
 interface IProps {
     routerStore: RouterStore;
+    authStore: AuthStore;
 }
 
 interface IState {
     open: boolean;
     teamOpen: boolean;
 }
-// TODO: Make this component receive a list for the menu and only have menu if list is available
+
+@inject("authStore", "routerStore")
 @observer
 export default class Navbar extends React.Component<IProps, IState> {
+    public static defaultProps: IProps;
+
     public componentWillMount = () => this.setState({ open: false });
     private handleDrawerOpen = () => this.setState({ open: true });
     private handleDrawerClose = () => this.setState({ open: false });
@@ -82,12 +90,11 @@ export default class Navbar extends React.Component<IProps, IState> {
                         <ListItem button onClick={() => this.onItemClick("/")}>
                             <ListItemIcon><DashboardIcon /></ListItemIcon>
                             <ListItemText primary={strings.navbar.home} />
-                            </ListItem>
-                            {/* Criação do botão de logout. Puxei a sting pelo destino "srings.navbar.logout" */}
-                            <ListItem button onClick={() => this.onItemClick("/")}>
-                            <ListItemIcon><DashboardIcon /></ListItemIcon>
+                        </ListItem>
+                        <ListItem button onClick={this.props.authStore.logout}>
+                            <ListItemIcon><KeyboardReturn /></ListItemIcon>
                             <ListItemText primary={strings.navbar.logout} />
-                            </ListItem>
+                        </ListItem>
                     </List>
                 </Drawer>
             </>

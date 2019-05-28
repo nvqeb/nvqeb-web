@@ -3,6 +3,10 @@ import LocalizedStrings from "localized-strings";
 
 const strings = new LocalizedStrings({
     ptBR: {
+        buttons: {
+            next: "Próximo",
+            previous: "Anteior",
+        },
         components: {
             image: {
                 addImage: "Imagem",
@@ -72,15 +76,26 @@ const strings = new LocalizedStrings({
                         },
                     },
                 },
+<<<<<<< HEAD
                 comments: {
                     name: ["Arthur Fernandes", "Filipe Arlindo", "Thiago Mariano"],
                     commentary: ["Excelente aula, finalmente entendi o assunto!",
                                  "Excelente aula, mas a prova é barril",
                                  "Barril, ném vá"],
                 },
+=======
+            },
+            login: {
+                email: "Email",
+                password: "Password",
+                loginButton: "Entrar",
+                resetPasswordButton: "Recuperar Senha",
+            },
+>>>>>>> cdfa196cf014b9b20b2cf92e721c2e196709a01d
         },
         error: {
             default: "Erro de conexão",
+            noMoreResults: "Sem mais resultados",
         },
         common: {
             yes: "Sim",
