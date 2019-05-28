@@ -93,7 +93,7 @@ export default class ProfessorContainer extends React.Component<IProps> {
 									className="professorPageProfessorContainerClassesContainerClassCard"
 									id={`professorPageProfessorContainerClassesContainerClassCard-${professorClass.id}`}
 									onClick={() => {
-										routerStore.push(`/classes/:classId`);
+										routerStore.push(`/classes/SubjectsInfo`);
 									}}
 								>
 									<Typography variant="subtitle1">
@@ -110,6 +110,34 @@ export default class ProfessorContainer extends React.Component<IProps> {
 									</Typography>
 								</div>
 							))}
+						</div>
+						<div className="professorPageProfessorContainerCommentBox">
+						{[
+						{
+							name: "Arthur Fernandes",
+							commentary: "Excelente aula, finalmente entendi o assunto!",
+						},
+						{
+							name: "Filipe Arlindo",
+							commentary: "Excelente aula, mas a prova é barril",
+						},
+						{
+							name: "Thiago Mariano",
+							commentary: "Barril, ném vá",
+						},
+						].map((userCommentary) => (
+							<>
+								<div>
+										<Typography variant="body1">
+										{userCommentary.name}
+										<br></br>
+										{userCommentary.commentary}
+										<br></br><br></br>
+										</Typography>
+								</div>
+							</>
+						))
+						},
 						</div>
 					</div>
 				</div>

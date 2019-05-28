@@ -34445,19 +34445,23 @@ var strings = new _localizedStrings.default({
               }
             }
           }
+        },
+        comments: {
+          name: ["Arthur Fernandes", "Filipe Arlindo", "Thiago Mariano"],
+          commentary: ["Excelente aula, finalmente entendi o assunto!", "Excelente aula, mas a prova é barril", "Barril, ném vá"]
         }
+      },
+      error: {
+        default: "Erro de conexão"
+      },
+      common: {
+        yes: "Sim",
+        no: "Não",
+        noMoreResults: "Sem mais resultados"
+      },
+      format: {
+        date: "dd/MM/yyyy"
       }
-    },
-    error: {
-      default: "Erro de conexão"
-    },
-    common: {
-      yes: "Sim",
-      no: "Não",
-      noMoreResults: "Sem mais resultados"
-    },
-    format: {
-      date: "dd/MM/yyyy"
     }
   }
 }); // api.setStrings(strings);
@@ -34673,6 +34677,10 @@ var _mobx = require("mobx");
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 // MARK: Mobx
+{
+  /* Tentativa de criar comentário*/
+}
+
 var ProfessorsStore =
 /** @class */
 function () {
@@ -46468,7 +46476,7 @@ function (_super) {
         className: "professorPageProfessorContainerClassesContainerClassCard",
         id: "professorPageProfessorContainerClassesContainerClassCard-" + professorClass.id,
         onClick: function onClick() {
-          _rootStore.routerStore.push("/classes/:classId");
+          _rootStore.routerStore.push("/classes/SubjectsInfo");
         }
       }, React.createElement(_Typography.default, {
         variant: "subtitle1"
@@ -46479,7 +46487,22 @@ function (_super) {
       }, _strings.default.pages.dashboard.professor.professorInfo.classes.classCard.scores.mean(professorClass.scores.mean)), React.createElement(_Typography.default, {
         variant: "body1"
       }, _strings.default.pages.dashboard.professor.professorInfo.classes.classCard.scores.max(professorClass.scores.max)));
-    })))));
+    })), React.createElement("div", {
+      className: "professorPageProfessorContainerCommentBox"
+    }, [{
+      name: "Arthur Fernandes",
+      commentary: "Excelente aula, finalmente entendi o assunto!"
+    }, {
+      name: "Filipe Arlindo",
+      commentary: "Excelente aula, mas a prova é barril"
+    }, {
+      name: "Thiago Mariano",
+      commentary: "Barril, ném vá"
+    }].map(function (userCommentary) {
+      return React.createElement(React.Fragment, null, React.createElement("div", null, React.createElement(_Typography.default, {
+        variant: "body1"
+      }, userCommentary.name, React.createElement("br", null), userCommentary.commentary, React.createElement("br", null), React.createElement("br", null))));
+    }), ","))));
   };
 
   ProfessorContainer = tslib_1.__decorate([(0, _mobxReact.inject)("routerStore", "uiStore", "professorsStore"), _mobxReact.observer], ProfessorContainer);
@@ -95186,7 +95209,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45539" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38005" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

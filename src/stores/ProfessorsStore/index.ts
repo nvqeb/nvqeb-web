@@ -23,6 +23,12 @@ export interface IProfessor {
 	classes: IClass[];
 }
 
+export interface IComments {
+	name: string;
+	comments: string[];
+}
+{/* Tentativa de criar comentário*/}
+
 export default class ProfessorsStore {
     @observable public selectedProfessor: IProfessor | null = null;
     @observable public professors: IProfessor[] = [

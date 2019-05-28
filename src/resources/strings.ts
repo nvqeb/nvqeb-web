@@ -72,7 +72,12 @@ const strings = new LocalizedStrings({
                         },
                     },
                 },
-            },
+                comments: {
+                    name: ["Arthur Fernandes", "Filipe Arlindo", "Thiago Mariano"],
+                    commentary: ["Excelente aula, finalmente entendi o assunto!",
+                                 "Excelente aula, mas a prova é barril",
+                                 "Barril, ném vá"],
+                },
         },
         error: {
             default: "Erro de conexão",
@@ -86,6 +91,7 @@ const strings = new LocalizedStrings({
             date: "dd/MM/yyyy",
         },
     },
+},
 });
 
 // api.setStrings(strings);
