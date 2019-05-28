@@ -914,6 +914,18 @@
     "@parcel/utils" "^1.11.0"
     physical-cpu-count "^2.0.0"
 
+"@startapp/nvqeb-user-api@^1.0.3183":
+  version "1.0.3185"
+  resolved "https://npm.startapp.one/@startapp%2fnvqeb-user-api/-/nvqeb-user-api-1.0.3185.tgz#20b61a90b627b193638f7736ef599b8d59ad9e04"
+  integrity sha512-XMUB1hD26hmzpRLSaISEao1vy+EvyftXbvJq6SMwOzfu3VgNjNnlzN37j1Ui3Vs9XmqaiMio8ogBJuzCAodbuA==
+  dependencies:
+    "@types/node" "^8.0.29"
+    "@types/ua-parser-js" "^0.7.32"
+    babel-runtime "^6.26.0"
+    localized-strings "^0.2.1"
+    moment "^2.17.1"
+    ua-parser-js "^0.7.14"
+
 "@types/history@*", "@types/history@^4.7.2":
   version "4.7.2"
   resolved "https://npm.startapp.one/@types%2fhistory/-/history-4.7.2.tgz#0e670ea254d559241b6eeb3894f8754991e73220"
@@ -931,6 +943,11 @@
   version "11.13.8"
   resolved "https://npm.startapp.one/@types%2fnode/-/node-11.13.8.tgz#e5d71173c95533be9842b2c798978f095f912aab"
   integrity sha512-szA3x/3miL90ZJxUCzx9haNbK5/zmPieGraZEe4WI+3srN0eGLiT22NXeMHmyhNEopn+IrxqMc7wdVwvPl8meg==
+
+"@types/node@^8.0.29":
+  version "8.10.48"
+  resolved "https://npm.startapp.one/@types%2fnode/-/node-8.10.48.tgz#e385073561643a9ba6199a1985ffc03530f90781"
+  integrity sha512-c35YEBTkL4rzXY2ucpSKy+UYHjUBIIkuJbWYbsGIrKLEWU5dgJMmLkkIb3qeC3O3Tpb1ZQCwecscvJTDjDjkRw==
 
 "@types/papaparse@^4.5.9":
   version "4.5.9"
@@ -1015,6 +1032,11 @@
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
+
+"@types/ua-parser-js@^0.7.32":
+  version "0.7.33"
+  resolved "https://npm.startapp.one/@types%2fua-parser-js/-/ua-parser-js-0.7.33.tgz#4a92089511574e12928a7cb6b99a01831acd1dd7"
+  integrity sha512-ngUKcHnytUodUCL7C6EZ+lVXUjTMQb+9p/e1JjV5tN9TVzS98lHozWEFRPY1QcCdwFeMsmVWfZ3DPPT/udCyIw==
 
 abab@^2.0.0:
   version "2.0.0"
@@ -1757,9 +1779,9 @@ core-js@^1.0.0:
   integrity sha1-ZSKUwUZR2yj6k70tX/KYOk8IxjY=
 
 core-js@^2.4.0:
-  version "2.6.5"
-  resolved "https://npm.startapp.one/core-js/-/core-js-2.6.5.tgz#44bc8d249e7fb2ff5d00e0341a7ffb94fbf67895"
-  integrity sha512-klh/kDpwX8hryYL14M9w/xei6vrv6sE8gTHDG7/T/+SEovB/G4ejwcfE/CBzO6Edsu+OETZMZ3wcX/EjUkrl5A==
+  version "2.6.9"
+  resolved "https://npm.startapp.one/core-js/-/core-js-2.6.9.tgz#6b4b214620c834152e179323727fc19741b084f2"
+  integrity sha512-HOpZf6eXmnl7la+cUdMnLvUxKNqLUzJvgIziQ0DiF3JwSImNphIqdGqzj6hIKyX04MmV0poclQ7+wjWvxQyR2A==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -3821,7 +3843,7 @@ mobx@^5.9.0:
   resolved "https://npm.startapp.one/mobx/-/mobx-5.9.4.tgz#1dee92aba33f67b7baeeb679e3bd376a12e55812"
   integrity sha512-L9JjTX2rtQUAhCIgnHokfntNOsF14uioT9LqStf6Mya+16j56ZBe21E8Y9V59tfr2aH2kLQPD10qtCJXBuTAxw==
 
-moment@^2.20.1:
+moment@^2.17.1, moment@^2.20.1:
   version "2.24.0"
   resolved "https://npm.startapp.one/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
@@ -6123,7 +6145,7 @@ typescript@^3.3.3:
   resolved "https://npm.startapp.one/typescript/-/typescript-3.4.5.tgz#2d2618d10bb566572b8d7aad5180d84257d70a99"
   integrity sha512-YycBxUb49UUhdNMU5aJ7z5Ej2XGmaIBL0x34vZ82fn3hGvD+bgrMrVDpatgz2f7YxUMJxMkbWxJZeAvDxVe7Vw==
 
-ua-parser-js@^0.7.18:
+ua-parser-js@^0.7.14, ua-parser-js@^0.7.18:
   version "0.7.19"
   resolved "https://npm.startapp.one/ua-parser-js/-/ua-parser-js-0.7.19.tgz#94151be4c0a7fb1d001af7022fdaca4642659e4b"
   integrity sha512-T3PVJ6uz8i0HzPxOF9SWzWAlfN/DavlpQqepn22xgve/5QecC+XMCAtmUNnY7C9StehaV6exjUCI801lOI7QlQ==

@@ -23,23 +23,8 @@ import DateFnsUtils from "@date-io/date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 
 // API
-// import * as api from "@startapp/nvqeb-user-api";
-// api.setUrl(process.env.NODE_ENV ?
-//     ((): string => {
-//         switch (process.env.NODE_ENV) {
-//             case "production": {
-//                 return "https://nvqeb.com.br/admin";
-//             }
-//             case "staging": {
-//                 return "https://nvqeb.com.br/admin";
-//             }
-//             default:
-//             case "development": {
-//                 return "https://nvqeb.com.br/admin";
-//             }
-//         }
-//     })() : "https://nvqeb.com.br/admin",
-// );
+import * as api from "@startapp/nvqeb-user-api";
+api.setUrl("https://api.nvqeb.startapp.one");
 
 ReactDOM.render(
     <Provider {...rootStore}>

@@ -9,6 +9,7 @@
 
     &ProfessorContainer {
         @extend %card;
+
         margin-top: 20px;
         width: 60%;
 
@@ -23,8 +24,8 @@
         &Avatar {
             border-radius: 50%;
             object-fit: cover;
-            width: 100px;
-            height: 220px;
+            width: 150px;
+            height: 150px;
         }
 
         &InfoContainer {
@@ -40,8 +41,6 @@
 
                 width: 100%;
                 flex-wrap: wrap;
-                
-                
             }
         }
 

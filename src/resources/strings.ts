@@ -3,6 +3,10 @@ import LocalizedStrings from "localized-strings";
 
 const strings = new LocalizedStrings({
     ptBR: {
+        buttons: {
+            next: "Próximo",
+            previous: "Anteior",
+        },
         components: {
             image: {
                 addImage: "Imagem",
@@ -76,6 +80,7 @@ const strings = new LocalizedStrings({
         },
         error: {
             default: "Erro de conexão",
+            noMoreResults: "Sem mais resultados",
         },
         common: {
             yes: "Sim",
