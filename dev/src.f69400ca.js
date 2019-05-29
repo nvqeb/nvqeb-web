@@ -34409,20 +34409,24 @@ var strings = new _localizedStrings.default({
     },
     pages: {
       dashboard: {
-        professors: {
-          title: "Lista de professores",
-          path: "/",
-          professorCard: {
-            avatarAlt: function avatarAlt(name) {
-              return "Avatar de " + name;
-            },
-            hardness: function hardness(_hardness) {
-              return "Dificuldade: " + _hardness;
+        subjectsInfo: {
+          professorsContainer: {
+            title: "Professores da matéria",
+            professorCard: {
+              avatarAlt: function avatarAlt(name) {
+                return "Avatar de " + name;
+              },
+              hardness: function hardness(_hardness) {
+                return "Dificuldade: " + _hardness;
+              }
             }
+          },
+          commentariesContainer: {
+            title: "Comentários sobre a matéria"
           }
         },
-        professoresDaMateria: {
-          title: "Professores da matéria",
+        professors: {
+          title: "Lista de professores",
           path: "/",
           professorCard: {
             avatarAlt: function avatarAlt(name) {
@@ -40333,13 +40337,168 @@ function (_super) {
 
 var _default = AuthStore;
 exports.default = _default;
-},{"tslib":"../node_modules/tslib/tslib.es6.js","@startapp/nvqeb-user-api":"../node_modules/@startapp/nvqeb-user-api/api.js","mobx":"../node_modules/mobx/lib/mobx.module.js","../../resources/VariableChangeHandler":"resources/VariableChangeHandler.ts","../_rootStore":"stores/_rootStore.ts","../../resources/strings":"resources/strings.ts","../../resources/handleError":"resources/handleError.ts"}],"stores/_rootStore.ts":[function(require,module,exports) {
+},{"tslib":"../node_modules/tslib/tslib.es6.js","@startapp/nvqeb-user-api":"../node_modules/@startapp/nvqeb-user-api/api.js","mobx":"../node_modules/mobx/lib/mobx.module.js","../../resources/VariableChangeHandler":"resources/VariableChangeHandler.ts","../_rootStore":"stores/_rootStore.ts","../../resources/strings":"resources/strings.ts","../../resources/handleError":"resources/handleError.ts"}],"stores/SchoolClassesStore/index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.rootStore = exports.authStore = exports.professorsStore = exports.uiStore = exports.routerStore = void 0;
+exports.default = void 0;
+
+var tslib_1 = _interopRequireWildcard(require("tslib"));
+
+var api = _interopRequireWildcard(require("@startapp/nvqeb-user-api"));
+
+var _mobx = require("mobx");
+
+var _rootStore = require("../_rootStore");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+// MARK: API
+// MARK: Mobx
+// MARK: Stores
+var SchoolClassesStore =
+/** @class */
+function () {
+  function SchoolClassesStore() {
+    var _this = this;
+
+    this.selectedSchoolClass = null;
+    this.loading = false;
+    this.selectedSchoolClassProfessores = [];
+
+    this.selectSchoolClass = function (schoolClassId) {
+      return tslib_1.__awaiter(_this, void 0, void 0, function () {
+        var _a, e_1;
+
+        return tslib_1.__generator(this, function (_b) {
+          switch (_b.label) {
+            case 0:
+              if (this.loading) {
+                return [2
+                /*return*/
+                ];
+              }
+
+              this.loading = true;
+              _b.label = 1;
+
+            case 1:
+              _b.trys.push([1, 3, 4, 5]);
+
+              _a = this;
+              return [4
+              /*yield*/
+              , api.getSchoolClass(schoolClassId)];
+
+            case 2:
+              _a.selectedSchoolClass = _b.sent();
+              return [3
+              /*break*/
+              , 5];
+
+            case 3:
+              e_1 = _b.sent();
+
+              _rootStore.uiStore.openErrorSnackbar(e_1);
+
+              return [3
+              /*break*/
+              , 5];
+
+            case 4:
+              this.loading = false;
+              return [7
+              /*endfinally*/
+              ];
+
+            case 5:
+              return [2
+              /*return*/
+              ];
+          }
+        });
+      });
+    };
+
+    this.getProfessoresForSelectSchoolClass = function () {
+      return tslib_1.__awaiter(_this, void 0, void 0, function () {
+        var _a, e_2;
+
+        return tslib_1.__generator(this, function (_b) {
+          switch (_b.label) {
+            case 0:
+              if (this.loading || !this.selectedSchoolClass) {
+                return [2
+                /*return*/
+                ];
+              }
+
+              this.loading = true;
+              _b.label = 1;
+
+            case 1:
+              _b.trys.push([1, 3, 4, 5]);
+
+              _a = this;
+              return [4
+              /*yield*/
+              , api.getProfessorsFor(this.selectedSchoolClass.id)];
+
+            case 2:
+              _a.selectedSchoolClassProfessores = _b.sent();
+              return [3
+              /*break*/
+              , 5];
+
+            case 3:
+              e_2 = _b.sent();
+
+              _rootStore.uiStore.openErrorSnackbar(e_2);
+
+              return [3
+              /*break*/
+              , 5];
+
+            case 4:
+              this.loading = false;
+              return [7
+              /*endfinally*/
+              ];
+
+            case 5:
+              return [2
+              /*return*/
+              ];
+          }
+        });
+      });
+    };
+  }
+
+  tslib_1.__decorate([_mobx.observable], SchoolClassesStore.prototype, "selectedSchoolClass", void 0);
+
+  tslib_1.__decorate([_mobx.observable], SchoolClassesStore.prototype, "loading", void 0);
+
+  tslib_1.__decorate([_mobx.observable], SchoolClassesStore.prototype, "selectedSchoolClassProfessores", void 0);
+
+  tslib_1.__decorate([_mobx.action], SchoolClassesStore.prototype, "selectSchoolClass", void 0);
+
+  tslib_1.__decorate([_mobx.action], SchoolClassesStore.prototype, "getProfessoresForSelectSchoolClass", void 0);
+
+  return SchoolClassesStore;
+}();
+
+var _default = SchoolClassesStore;
+exports.default = _default;
+},{"tslib":"../node_modules/tslib/tslib.es6.js","@startapp/nvqeb-user-api":"../node_modules/@startapp/nvqeb-user-api/api.js","mobx":"../node_modules/mobx/lib/mobx.module.js","../_rootStore":"stores/_rootStore.ts"}],"stores/_rootStore.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.rootStore = exports.schoolClassesStore = exports.authStore = exports.professorsStore = exports.uiStore = exports.routerStore = void 0;
 
 var _mobxReactRouter = require("mobx-react-router");
 
@@ -40348,6 +40507,8 @@ var _UIStore = _interopRequireDefault(require("./UIStore"));
 var _ProfessorsStore = _interopRequireDefault(require("./ProfessorsStore"));
 
 var _AuthStore = _interopRequireDefault(require("./AuthStore"));
+
+var _SchoolClassesStore = _interopRequireDefault(require("./SchoolClassesStore"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -40360,14 +40521,17 @@ var professorsStore = new _ProfessorsStore.default();
 exports.professorsStore = professorsStore;
 var authStore = new _AuthStore.default();
 exports.authStore = authStore;
+var schoolClassesStore = new _SchoolClassesStore.default();
+exports.schoolClassesStore = schoolClassesStore;
 var rootStore = {
   routerStore: routerStore,
   uiStore: uiStore,
   professorsStore: professorsStore,
-  authStore: authStore
+  authStore: authStore,
+  schoolClassesStore: schoolClassesStore
 };
 exports.rootStore = rootStore;
-},{"mobx-react-router":"../node_modules/mobx-react-router/dist/mobx-react-router.js","./UIStore":"stores/UIStore/index.ts","./ProfessorsStore":"stores/ProfessorsStore/index.ts","./AuthStore":"stores/AuthStore/index.ts"}],"../node_modules/react-router-dom/node_modules/@babel/runtime/helpers/esm/inheritsLoose.js":[function(require,module,exports) {
+},{"mobx-react-router":"../node_modules/mobx-react-router/dist/mobx-react-router.js","./UIStore":"stores/UIStore/index.ts","./ProfessorsStore":"stores/ProfessorsStore/index.ts","./AuthStore":"stores/AuthStore/index.ts","./SchoolClassesStore":"stores/SchoolClassesStore/index.ts"}],"../node_modules/react-router-dom/node_modules/@babel/runtime/helpers/esm/inheritsLoose.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -66222,7 +66386,7 @@ function (_super) {
     }, professors.map(function (professor) {
       return React.createElement("div", {
         className: "professorsPageProfessorsContainerProfessorCard",
-        key: "professorsPageProfessorsContainerProfessorCard-" + professor.id,
+        key: professor.id,
         onClick: function onClick() {
           return routerStore.push(_strings.default.pages.dashboard.professor.path(professor.id));
         }
@@ -66325,9 +66489,7 @@ function (_super) {
 
     return React.createElement("div", {
       className: "professorPage"
-    }, React.createElement(_Typography.default, {
-      variant: "h4"
-    }, _strings.default.pages.dashboard.professor.title), React.createElement("div", {
+    }, React.createElement("div", {
       className: "professorPageProfessorContainer"
     }, React.createElement("img", {
       className: "professorPageProfessorContainerAvatar",
@@ -66366,37 +66528,44 @@ function (_super) {
           _rootStore.routerStore.push("/classes/" + schoolClass.id);
         }
       }, React.createElement(_Typography.default, {
-        variant: "subtitle1"
+        variant: "subtitle2"
       }, schoolClass.name, " - ", schoolClass.id));
     })), React.createElement("div", {
-      className: "professorPageProfessorContainerCommentBox"
-    }, [{
-      name: "Arthur Fernandes",
+      className: "professorPageProfessorContainerCommentariesContainer"
+    }, React.createElement(_Typography.default, {
+      variant: "h6"
+    }, _strings.default.pages.dashboard.subjectsInfo.commentariesContainer.title), [{
+      user: {
+        name: "Arthur Fernandes",
+        avatar: null
+      },
       commentary: "Excelente aula, finalmente entendi o assunto!"
     }, {
-      name: "Filipe Arlindo",
+      user: {
+        name: "Filipe Arlindo",
+        avatar: null
+      },
       commentary: "Excelente aula, mas a prova é barril"
     }, {
-      name: "Thiago Mariano",
+      user: {
+        name: "Thiago Mariano",
+        avatar: null
+      },
       commentary: "Barril, ném vá"
     }].map(function (userCommentary) {
-      return React.createElement(React.Fragment, null, React.createElement("div", null, React.createElement("img", {
-        className: "professorPageProfessorContainerCommentBoxUserContainerIcon",
-        src: selectedProfessor.avatar ? selectedProfessor.avatar.url : "/userPlaceholder.svg"
+      return React.createElement("div", {
+        className: "professorPageProfessorContainerCommentariesContainerCommentaryCard"
+      }, React.createElement("img", {
+        className: "professorPageProfessorContainerCommentariesContainerCommentaryCardAvatar",
+        src: userCommentary.user.avatar ? userCommentary.user.avatar.url : "/userPlaceholder.svg"
       }), React.createElement("div", {
-        className: "professorPageProfessorContainerCommentBoxInfoContainerUserName"
+        className: "professorPageProfessorContainerCommentariesContainerCommentaryCardInfoContainer"
       }, React.createElement(_Typography.default, {
-        variant: "body1",
-        style: {
-          color: "white",
-          fontSize: 17
-        }
-      }, userCommentary.name, React.createElement("br", null))), React.createElement("div", {
-        className: "professorPageProfessorContainerCommentBoxInfoContainerCommentary"
-      }, React.createElement(_Typography.default, {
+        variant: "subtitle1"
+      }, userCommentary.user.name), React.createElement(_Typography.default, {
         variant: "body1"
-      }, userCommentary.commentary, React.createElement("br", null), React.createElement("br", null)))));
-    }), ",")));
+      }, userCommentary.commentary)));
+    }))));
   };
 
   ProfessorContainer = tslib_1.__decorate([(0, _mobxReact.inject)("routerStore", "uiStore", "professorsStore"), _mobxReact.observer], ProfessorContainer);
@@ -66444,52 +66613,78 @@ function (_super) {
   tslib_1.__extends(SubjectsInfo, _super);
 
   function SubjectsInfo() {
-    return _super !== null && _super.apply(this, arguments) || this;
+    var _this = _super !== null && _super.apply(this, arguments) || this;
+
+    _this.componentDidMount = function () {
+      return tslib_1.__awaiter(_this, void 0, void 0, function () {
+        var classId;
+        return tslib_1.__generator(this, function (_a) {
+          switch (_a.label) {
+            case 0:
+              classId = this.props.match.params.classId;
+              return [4
+              /*yield*/
+              , this.props.schoolClassesStore.selectSchoolClass(classId)];
+
+            case 1:
+              _a.sent();
+
+              return [4
+              /*yield*/
+              , this.props.schoolClassesStore.getProfessoresForSelectSchoolClass()];
+
+            case 2:
+              _a.sent();
+
+              return [2
+              /*return*/
+              ];
+          }
+        });
+      });
+    };
+
+    return _this;
   }
 
   SubjectsInfo.prototype.render = function () {
     var _a = this.props,
-        routerStore = _a.routerStore,
-        professorsStore = _a.professorsStore;
-    var schoolClass = {
-      id: "MATA40",
-      description: "Uma descrição qualquer",
-      name: "Matemática Discreta"
-    };
-    var professors = [{
-      id: "123",
-      schoolClasses: [schoolClass],
-      avatar: null,
-      name: "Jenifer",
-      tags: ["Tinder"],
-      hardness: 10
-    }];
-    return React.createElement(React.Fragment, null, React.createElement(_Typography.default, {
-      variant: "h4",
-      style: {
-        marginLeft: "auto",
-        marginRight: "auto",
-        marginTop: 20,
-        fontSize: 25,
-        backgroundColor: "white",
-        width: 270
-      }
-    }, _strings.default.pages.dashboard.professoresDaMateria.title), React.createElement("div", {
-      className: "professorsPageProfessorsContainer"
-    }, professors.map(function (professor) {
+        schoolClassesStore = _a.schoolClassesStore,
+        routerStore = _a.routerStore;
+    var selectedSchoolClass = schoolClassesStore.selectedSchoolClass,
+        selectedSchoolClassProfessores = schoolClassesStore.selectedSchoolClassProfessores;
+
+    if (!selectedSchoolClass) {
+      routerStore.push("/");
+      return React.createElement(React.Fragment, null);
+    }
+
+    return React.createElement("div", {
+      className: "subjectInfoPage"
+    }, React.createElement("div", {
+      className: "subjectInfoPageContainer"
+    }, React.createElement("div", {
+      className: "subjectInfoPageContainerInfoContainer"
+    }, React.createElement(_Typography.default, {
+      variant: "h6"
+    }, selectedSchoolClass.id, " - ", selectedSchoolClass.name), React.createElement(_Typography.default, {
+      variant: "body1"
+    }, selectedSchoolClass.description)), React.createElement(_Typography.default, {
+      variant: "h6"
+    }, _strings.default.pages.dashboard.subjectsInfo.professorsContainer.title), React.createElement("div", {
+      className: "subjectInfoPageContainerProfessorsContainer"
+    }, selectedSchoolClassProfessores.map(function (professor) {
       return React.createElement("div", {
-        className: "professorsPageProfessorsContainerProfessorCard",
-        key: "professorsPageProfessorsContainerProfessorCard-" + professor.id,
+        className: "subjectInfoPageContainerProfessorsContainerProfessorCard",
+        key: "subjectInfoPageContainerProfessorsContainerProfessorCard-" + professor.id,
         onClick: function onClick() {
           return routerStore.push(_strings.default.pages.dashboard.professor.path(professor.id));
         }
       }, React.createElement("img", {
-        className: "professorsPageProfessorsContainerProfessorCardAvatar",
+        className: "subjectInfoPageContainerProfessorsContainerProfessorCardAvatar",
         src: professor.avatar ? professor.avatar.url : "/userPlaceholder.svg",
         alt: _strings.default.pages.dashboard.professors.professorCard.avatarAlt(professor.name)
-      }), React.createElement("div", {
-        className: "professorsPageProfessorsContainerProfessorCardInfoContainer"
-      }, React.createElement(_Typography.default, {
+      }), React.createElement("div", null, React.createElement(_Typography.default, {
         variant: "subtitle1"
       }, professor.name), React.createElement(_Typography.default, {
         variant: "body1"
@@ -66497,40 +66692,44 @@ function (_super) {
         variant: "body1"
       }, _strings.default.pages.dashboard.professors.professorCard.hardness(professor.hardness))));
     })), React.createElement("div", {
-      className: "professorPageProfessorContainerCommentBox",
-      style: {
-        marginLeft: "auto",
-        marginRight: "auto"
-      }
-    }, [{
-      name: "Arthur Fernandes",
+      className: "subjectInfoPageContainerCommentariesContainer"
+    }, React.createElement(_Typography.default, {
+      variant: "h6"
+    }, _strings.default.pages.dashboard.subjectsInfo.commentariesContainer.title), [{
+      user: {
+        name: "Arthur Fernandes",
+        avatar: null
+      },
       commentary: "Excelente aula, finalmente entendi o assunto!"
     }, {
-      name: "Filipe Arlindo",
+      user: {
+        name: "Filipe Arlindo",
+        avatar: null
+      },
       commentary: "Excelente aula, mas a prova é barril"
     }, {
-      name: "Thiago Mariano",
+      user: {
+        name: "Thiago Mariano",
+        avatar: null
+      },
       commentary: "Barril, ném vá"
     }].map(function (userCommentary) {
-      return React.createElement(React.Fragment, null, React.createElement("div", null, React.createElement("img", {
-        className: "professorPageProfessorContainerCommentBoxUserContainerIcon"
+      return React.createElement("div", {
+        className: "subjectInfoPageContainerCommentariesContainerCommentaryCard"
+      }, React.createElement("img", {
+        className: "subjectInfoPageContainerCommentariesContainerCommentaryCardAvatar",
+        src: userCommentary.user.avatar ? userCommentary.user.avatar.url : "/userPlaceholder.svg"
       }), React.createElement("div", {
-        className: "professorPageProfessorContainerCommentBoxInfoContainerUserName"
+        className: "subjectInfoPageContainerCommentariesContainerCommentaryCardInfoContainer"
       }, React.createElement(_Typography.default, {
-        variant: "body1",
-        style: {
-          color: "white",
-          fontSize: 17
-        }
-      }, userCommentary.name, React.createElement("br", null))), React.createElement("div", {
-        className: "professorPageProfessorContainerCommentBoxInfoContainerCommentary"
-      }, React.createElement(_Typography.default, {
+        variant: "subtitle1"
+      }, userCommentary.user.name), React.createElement(_Typography.default, {
         variant: "body1"
-      }, userCommentary.commentary, React.createElement("br", null), React.createElement("br", null)))));
-    }), ","));
+      }, userCommentary.commentary)));
+    }))));
   };
 
-  SubjectsInfo = tslib_1.__decorate([(0, _mobxReact.inject)("routerStore", "uiStore", "professorsStore"), _mobxReact.observer], SubjectsInfo);
+  SubjectsInfo = tslib_1.__decorate([(0, _mobxReact.inject)("routerStore", "uiStore", "schoolClassesStore"), _mobxReact.observer], SubjectsInfo);
   return SubjectsInfo;
 }(React.Component);
 
@@ -101149,7 +101348,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41393" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41837" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

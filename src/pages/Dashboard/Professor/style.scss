@@ -4,6 +4,7 @@
 
 .professorPage {
     @include flex(column, flex-start, center);
+
     width: 100%;
     padding-top: 20px;
 
@@ -45,69 +46,40 @@
         }
 
         &ClassesContainer {
-            @include flex(row, center, center);
+            @include flex(row, center, flex-start);
+
             width: 100%;
             padding-top: 20px;
             flex-wrap: wrap;
 
             &ClassCard {
-                @extend %card;
                 @include flex(column, flex-start, flex-start);
+                @extend %card;
 
                 cursor: pointer;
-                width: 200px;
                 margin: 8px;
             }
         }
-        &CommentBox {
-            @include flex(row, center, center);
-            width: 300px;
+
+        &CommentariesContainer {
+            @include flex(column, center, center);
+
+            width: 100%;
             padding-top: 20px;
-            flex-wrap: wrap;
-            @extend %card;
 
-            &InfoContainer {
-                @include flex(column, flex-start, flex-start);
-
-                &UserName {
-                    background-color: hotpink;
-                    width: 260px;
-                    padding-left: 10px;
-                    border-top-left-radius: 6px;
-                    border-top-right-radius: 6px;
-                }
-    
-                &Commentary {
-                    background-color: pink;
-                    margin-bottom: 20px;
-                    padding-left: 10px;
-                    border-bottom-left-radius: 6px;
-                    border-bottom-right-radius: 6px;
-                }
-            }
-
-            
-            &UserContainer {
+            &CommentaryCard {
+                @include flex(row, flex-start, flex-start);
                 @extend %card;
-                @include flex(row, flex-start, center);
-        
-                margin-top: 20px;
-                width: 60%;
-        
-                @media (max-width: $tablet) {
-                    width: 80%;
-                }
-        
-                @media (max-width: $mobile) {
-                    width: 90%;
-                }
-        
-                &Icon {
-                    
+
+                width: 80%;
+                margin: 8px;
+
+                &Avatar {
+                    margin-right: 8px;
                     border-radius: 50%;
                     object-fit: cover;
-                    width: 50px;
-                    height: 50px;
+                    width: 40px;
+                    height: 40px;
                 }
             }
         }

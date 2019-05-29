@@ -51,16 +51,20 @@ const strings = new LocalizedStrings({
         },
         pages: {
             dashboard: {
-                professors: {
-                    title: "Lista de professores",
-                    path: "/",
-                    professorCard: {
-                        avatarAlt: (name: string) => `Avatar de ${name}`,
-                        hardness: (hardness: number) => `Dificuldade: ${hardness}`,
+                subjectsInfo: {
+                    professorsContainer: {
+                        title: "Professores da matéria",
+                        professorCard: {
+                            avatarAlt: (name: string) => `Avatar de ${name}`,
+                            hardness: (hardness: number) => `Dificuldade: ${hardness}`,
+                        },
+                    },
+                    commentariesContainer: {
+                        title: "Comentários sobre a matéria",
                     },
                 },
-                professoresDaMateria: {
-                    title: "Professores da matéria",
+                professors: {
+                    title: "Lista de professores",
                     path: "/",
                     professorCard: {
                         avatarAlt: (name: string) => `Avatar de ${name}`,

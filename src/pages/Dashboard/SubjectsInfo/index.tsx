@@ -2,6 +2,9 @@
 import * as React from "react";
 import "./style.scss";
 
+// MARK: Router
+import { match } from "react-router";
+
 // MARK: API
 import * as api from "@startapp/nvqeb-user-api";
 
@@ -14,124 +17,123 @@ import strings from "../../../resources/strings";
 // MARK: Stores
 import { RouterStore } from "mobx-react-router";
 import UIStore from "../../../stores/UIStore";
-import ProfessorsStore from "../../../stores/ProfessorsStore";
+import SchoolClassesStore from "../../../stores/SchoolClassesStore";
 
 // MARK: Components
 import Typography from "@material-ui/core/Typography";
 
 interface IProps {
+	match: match<{ classId: string }>;
 	routerStore: RouterStore;
 	uiStore: UIStore;
-	professorsStore: ProfessorsStore;
+	schoolClassesStore: SchoolClassesStore;
 }
 
-@inject("routerStore", "uiStore", "professorsStore")
+@inject("routerStore", "uiStore", "schoolClassesStore")
 @observer
 export default class SubjectsInfo extends React.Component<IProps> {
+	public componentDidMount = async () => {
+		const { classId } = this.props.match.params;
+
+		await this.props.schoolClassesStore.selectSchoolClass(classId);
+		await this.props.schoolClassesStore.getProfessoresForSelectSchoolClass();
+	}
+
 	public render() {
-		const { routerStore, professorsStore } = this.props;
+		const { schoolClassesStore, routerStore } = this.props;
+		const { selectedSchoolClass, selectedSchoolClassProfessores } = schoolClassesStore;
 
-		const schoolClass: api.SchoolClass = {
-			id: "MATA40",
-			description: "Uma descrição qualquer",
-			name: "Matemática Discreta",
-		};
+		if (!selectedSchoolClass) {
+			routerStore.push("/");
 
-		const professors: api.Professor[] = [
-			{
-				id: "123",
-				schoolClasses: [schoolClass],
-				avatar: null,
-				name: "Jenifer",
-				tags: ["Tinder"],
-				hardness: 10,
-			},
-		];
+			return <></>;
+		}
 
 		return (
-			<><Typography variant="h4"
-			style={{
-				marginLeft: "auto",
-				marginRight: "auto",
-				marginTop: 20,
-				fontSize: 25,
-				backgroundColor: "white",
-				width: 270,
-			}}>
-			{strings.pages.dashboard.professoresDaMateria.title}
-		</Typography>
-		<div className="professorsPageProfessorsContainer">
-			{professors.map((professor) => (
-				<div
-					className="professorsPageProfessorsContainerProfessorCard"
-					key={`professorsPageProfessorsContainerProfessorCard-${professor.id}`}
-					onClick={() => routerStore.push(strings.pages.dashboard.professor.path(professor.id))}
-				>
-					<img
-						className="professorsPageProfessorsContainerProfessorCardAvatar"
-						src={professor.avatar ? professor.avatar.url : "/userPlaceholder.svg"}
-						alt={strings.pages.dashboard.professors.professorCard.avatarAlt(professor.name)}
-					/>
-					<div className="professorsPageProfessorsContainerProfessorCardInfoContainer">
-						<Typography variant="subtitle1">
-							{professor.name}
+			<div className="subjectInfoPage">
+				<div className="subjectInfoPageContainer">
+					<div className="subjectInfoPageContainerInfoContainer">
+						<Typography variant="h6">
+							{selectedSchoolClass.id} - {selectedSchoolClass.name}
 						</Typography>
 						<Typography variant="body1">
-							{professor.tags}
-						</Typography>
-						<Typography variant="body1">
-							{strings.pages.dashboard.professors.professorCard.hardness(professor.hardness)}
+							{selectedSchoolClass.description}
 						</Typography>
 					</div>
-				</div>
-			))}
-		</div>
-		<div className="professorPageProfessorContainerCommentBox"
-		style={{
-			marginLeft: "auto",
-			marginRight: "auto",
-		}}>
-						{[
-						{
-							name: "Arthur Fernandes",
-							commentary: "Excelente aula, finalmente entendi o assunto!",
-						},
-						{
-							name: "Filipe Arlindo",
-							commentary: "Excelente aula, mas a prova é barril",
-						},
-						{
-							name: "Thiago Mariano",
-							commentary: "Barril, ném vá",
-						},
-						].map((userCommentary) => (
-							<>
+					<Typography variant="h6">
+						{strings.pages.dashboard.subjectsInfo.professorsContainer.title}
+					</Typography>
+					<div className="subjectInfoPageContainerProfessorsContainer">
+						{selectedSchoolClassProfessores.map((professor) => (
+							<div
+								className="subjectInfoPageContainerProfessorsContainerProfessorCard"
+								key={`subjectInfoPageContainerProfessorsContainerProfessorCard-${professor.id}`}
+								onClick={() => routerStore.push(strings.pages.dashboard.professor.path(professor.id))}
+							>
+								<img
+									className="subjectInfoPageContainerProfessorsContainerProfessorCardAvatar"
+									src={professor.avatar ? professor.avatar.url : "/userPlaceholder.svg"}
+									alt={strings.pages.dashboard.professors.professorCard.avatarAlt(professor.name)}
+								/>
 								<div>
-										<img
-										className="professorPageProfessorContainerCommentBoxUserContainerIcon"
-										/>
-										<div className="professorPageProfessorContainerCommentBoxInfoContainerUserName">
-										<Typography variant="body1"
-										style={{
-											color: "white",
-											fontSize: 17,
-										}}>
-										{userCommentary.name}
-										<br></br>
-										</Typography>
-										</div>
-										<div className="professorPageProfessorContainerCommentBoxInfoContainerCommentary">
-										<Typography variant="body1">
-										{userCommentary.commentary}
-										<br></br><br></br>
-										</Typography>
-										</div>
+									<Typography variant="subtitle1">
+										{professor.name}
+									</Typography>
+									<Typography variant="body1">
+										{professor.tags}
+									</Typography>
+									<Typography variant="body1">
+										{strings.pages.dashboard.professors.professorCard.hardness(professor.hardness)}
+									</Typography>
 								</div>
-							</>
-						))
-						},
-						</div>
-			</>
+							</div>
+						))}
+					</div>
+					<div className="subjectInfoPageContainerCommentariesContainer">
+						<Typography variant="h6">
+							{strings.pages.dashboard.subjectsInfo.commentariesContainer.title}
+						</Typography>
+						{[
+							{
+								user: {
+									name: "Arthur Fernandes",
+									avatar: null as {url: string} | null,
+								},
+								commentary: "Excelente aula, finalmente entendi o assunto!",
+							},
+							{
+								user: {
+									name: "Filipe Arlindo",
+									avatar: null as {url: string} | null,
+								},
+								commentary: "Excelente aula, mas a prova é barril",
+							},
+							{
+								user: {
+									name: "Thiago Mariano",
+									avatar: null as {url: string} | null,
+								},
+								commentary: "Barril, ném vá",
+							},
+						].map((userCommentary) => (
+							<div className="subjectInfoPageContainerCommentariesContainerCommentaryCard">
+								<img
+									className="subjectInfoPageContainerCommentariesContainerCommentaryCardAvatar"
+									src={userCommentary.user.avatar ? userCommentary.user.avatar.url : "/userPlaceholder.svg"}
+								/>
+								<div className="subjectInfoPageContainerCommentariesContainerCommentaryCardInfoContainer">
+									<Typography variant="subtitle1">
+										{userCommentary.user.name}
+									</Typography>
+									<Typography variant="body1">
+										{userCommentary.commentary}
+									</Typography>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
 		);
 	}
 }

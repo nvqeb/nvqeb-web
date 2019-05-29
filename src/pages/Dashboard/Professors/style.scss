@@ -30,17 +30,16 @@
             margin: 8px;
 
             &Avatar {
+                width: 80px;
+                height: 80px;
                 border-radius: 50%;
-                object-fit: cover;
-                width: 90px;
-                height: 90px;
+                margin-right: 8px;
             }
 
             &InfoContainer {
                 @include flex(column, flex-start, flex-start);
 
                 height: 100%;
-                margin-left: 8px;
             }
         }
     }

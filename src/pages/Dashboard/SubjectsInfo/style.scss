@@ -1,1 +1,85 @@
 @import "../../../styles/flex";
+@import "../../../styles/card";
+@import "../../../styles/dimentions";
+
+.subjectInfoPage {
+    @include flex(column, flex-start, center);
+    width: 100%;
+    padding-top: 20px;
+    
+    &Container {
+        @extend %card;
+
+        padding: 20px;
+        width: 60%;
+
+        @media (max-width: $tablet) {
+            width: 80%;
+        }
+
+        @media (max-width: $mobile) {
+            width: 90%;
+        }
+
+        &InfoContainer {
+            @include flex(column, center, center);
+            text-align: center;
+            padding: 40px;
+        }
+
+        &ProfessorsContainer {
+            @include flex(row, center, center);
+
+            width: 100%;
+            padding-top: 20px;
+            flex-wrap: wrap;
+
+            &ProfessorCard {
+                @extend %card;
+                @include flex(row, flex-start, center);
+
+                cursor: pointer;
+                width: 300px;
+                margin: 8px;
+
+                &Avatar {
+                    margin-right: 12px;
+                    object-fit: cover;
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50%;
+                }
+
+                &InfoContainer {
+                    @include flex(column, flex-start, flex-start);
+
+                    height: 100%;
+                    margin-left: 8px;
+                }
+            }
+        }
+
+        &CommentariesContainer {
+            @include flex(column, center, center);
+
+            width: 100%;
+            padding-top: 20px;
+
+            &CommentaryCard {
+                @include flex(row, flex-start, flex-start);
+                @extend %card;
+
+                width: 80%;
+                margin: 8px;
+
+                &Avatar {
+                    margin-right: 8px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+        }
+    }
+}

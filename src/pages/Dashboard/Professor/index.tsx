@@ -46,9 +46,6 @@ export default class ProfessorContainer extends React.Component<IProps> {
 
 		return (
 			<div className="professorPage">
-				<Typography variant="h4">
-					{strings.pages.dashboard.professor.title}
-				</Typography>
 				<div className="professorPageProfessorContainer">
 					<img
 						className="professorPageProfessorContainerAvatar"
@@ -95,7 +92,7 @@ export default class ProfessorContainer extends React.Component<IProps> {
 									routerStore.push(`/classes/${schoolClass.id}`);
 								}}
 							>
-								<Typography variant="subtitle1">
+								<Typography variant="subtitle2">
 									{schoolClass.name} - {schoolClass.id}
 								</Typography>
 								{/* <Typography variant="body1">
@@ -110,48 +107,49 @@ export default class ProfessorContainer extends React.Component<IProps> {
 							</div>
 						))}
 					</div>
-					<div className="professorPageProfessorContainerCommentBox">
+					<div className="professorPageProfessorContainerCommentariesContainer">
+						<Typography variant="h6">
+							{strings.pages.dashboard.subjectsInfo.commentariesContainer.title}
+						</Typography>
 						{[
-						{
-							name: "Arthur Fernandes",
-							commentary: "Excelente aula, finalmente entendi o assunto!",
-						},
-						{
-							name: "Filipe Arlindo",
-							commentary: "Excelente aula, mas a prova é barril",
-						},
-						{
-							name: "Thiago Mariano",
-							commentary: "Barril, ném vá",
-						},
+							{
+								user: {
+									name: "Arthur Fernandes",
+									avatar: null as {url: string} | null,
+								},
+								commentary: "Excelente aula, finalmente entendi o assunto!",
+							},
+							{
+								user: {
+									name: "Filipe Arlindo",
+									avatar: null as {url: string} | null,
+								},
+								commentary: "Excelente aula, mas a prova é barril",
+							},
+							{
+								user: {
+									name: "Thiago Mariano",
+									avatar: null as {url: string} | null,
+								},
+								commentary: "Barril, ném vá",
+							},
 						].map((userCommentary) => (
-							<>
-								<div>
-										<img
-										className="professorPageProfessorContainerCommentBoxUserContainerIcon"
-										src={selectedProfessor.avatar ? selectedProfessor.avatar.url : "/userPlaceholder.svg"}
-										/>
-										<div className="professorPageProfessorContainerCommentBoxInfoContainerUserName">
-										<Typography variant="body1"
-										style={{
-											color: "white",
-											fontSize: 17,
-										}}>
-										{userCommentary.name}
-										<br></br>
-										</Typography>
-										</div>
-										<div className="professorPageProfessorContainerCommentBoxInfoContainerCommentary">
-										<Typography variant="body1">
+							<div className="professorPageProfessorContainerCommentariesContainerCommentaryCard">
+								<img
+									className="professorPageProfessorContainerCommentariesContainerCommentaryCardAvatar"
+									src={userCommentary.user.avatar ? userCommentary.user.avatar.url : "/userPlaceholder.svg"}
+								/>
+								<div className="professorPageProfessorContainerCommentariesContainerCommentaryCardInfoContainer">
+									<Typography variant="subtitle1">
+										{userCommentary.user.name}
+									</Typography>
+									<Typography variant="body1">
 										{userCommentary.commentary}
-										<br></br><br></br>
-										</Typography>
-										</div>
+									</Typography>
 								</div>
-							</>
-						))
-						},
-						</div>
+							</div>
+						))}
+					</div>
 				</div>
 			</div>
 		);

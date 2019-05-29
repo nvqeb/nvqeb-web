@@ -49,7 +49,7 @@ export default class ProfessorsContainer extends React.Component<IProps> {
 					{professors.map((professor) => (
 						<div
 							className="professorsPageProfessorsContainerProfessorCard"
-							key={`professorsPageProfessorsContainerProfessorCard-${professor.id}`}
+							key={professor.id}
 							onClick={() => routerStore.push(strings.pages.dashboard.professor.path(professor.id))}
 						>
 							<img
