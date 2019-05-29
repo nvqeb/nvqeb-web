@@ -3,9 +3,13 @@ import LocalizedStrings from "localized-strings";
 
 const strings = new LocalizedStrings({
     ptBR: {
+        textFields: {
+            commentary: "Comentário",
+        },
         buttons: {
             next: "Próximo",
             previous: "Anteior",
+            commentary: "Comentar",
         },
         components: {
             image: {

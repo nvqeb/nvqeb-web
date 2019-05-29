@@ -8,18 +8,17 @@ import { match } from "react-router";
 // MARK: Mobx
 import { observer, inject } from "mobx-react";
 
-// MARK: Router
-import { Route, Switch } from "react-router-dom";
-
 // MARK: Resources
 import strings from "../../../resources/strings";
 
 // MARK: Stores
 import ProfessorsStore from "../../../stores/ProfessorsStore";
-import { routerStore } from "../../../stores/_rootStore";
+import { routerStore, professorsStore } from "../../../stores/_rootStore";
 
 // MARK: Components
 import Typography from "@material-ui/core/Typography";
+import TextField from "../../../components/TextField";
+import Button from "../../../components/Button";
 
 interface IProps {
 	match: match<{ professorId: string }>;
@@ -45,16 +44,16 @@ export default class ProfessorContainer extends React.Component<IProps> {
 		return (
 			<div className="professorPage">
 				<div className="professorPageProfessorContainer">
-					<img
-						className="professorPageProfessorContainerAvatar"
-						src={selectedProfessor.avatar ? selectedProfessor.avatar.url : "/userPlaceholder.svg"}
-						alt={strings.pages.dashboard.professor.professorInfo.avatarAlt(selectedProfessor.name)}
-					/>
 					<div className="professorPageProfessorContainerInfoContainer">
+						<img
+							className="professorPageProfessorContainerAvatar"
+							src={selectedProfessor.avatar ? selectedProfessor.avatar.url : "/userPlaceholder.svg"}
+							alt={strings.pages.dashboard.professor.professorInfo.avatarAlt(selectedProfessor.name)}
+						/>
 						<Typography variant="h4">
 							{selectedProfessor.name}
 						</Typography>
-						<Typography variant="subtitle2">
+						<Typography variant="subtitle1">
 							{strings.pages.dashboard.professor.professorInfo.hardness(selectedProfessor.hardness)}
 						</Typography>
 						<div className="professorPageProfessorContainerInfoContainerTagsContainer">
@@ -109,29 +108,7 @@ export default class ProfessorContainer extends React.Component<IProps> {
 						<Typography variant="h6">
 							{strings.pages.dashboard.subjectsInfo.commentariesContainer.title}
 						</Typography>
-						{[
-							{
-								user: {
-									name: "Arthur Fernandes",
-									avatar: null as {url: string} | null,
-								},
-								commentary: "Excelente aula, finalmente entendi o assunto!",
-							},
-							{
-								user: {
-									name: "Filipe Arlindo",
-									avatar: null as {url: string} | null,
-								},
-								commentary: "Excelente aula, mas a prova é barril",
-							},
-							{
-								user: {
-									name: "Thiago Mariano",
-									avatar: null as {url: string} | null,
-								},
-								commentary: "Barril, ném vá",
-							},
-						].map((userCommentary) => (
+						{professorsStore.commentaries.map((userCommentary) => (
 							<div className="professorPageProfessorContainerCommentariesContainerCommentaryCard">
 								<img
 									className="professorPageProfessorContainerCommentariesContainerCommentaryCardAvatar"
@@ -147,6 +124,19 @@ export default class ProfessorContainer extends React.Component<IProps> {
 								</div>
 							</div>
 						))}
+						<div className="professorPageProfessorContainerCommentariesContainerInputContainer">
+							<TextField
+								label={strings.textFields.commentary}
+								name="commentary"
+								type="commentary"
+								value={professorsStore.commentary}
+								disabled={professorsStore.loading}
+								onChange={professorsStore.handleValueChange}
+							/>
+							<Button
+								onClick={() => professorsStore.sendCommentary()}
+							>{strings.buttons.commentary}</Button>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -84,6 +84,12 @@
                     height: 40px;
                 }
             }
+
+            &InputContainer {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 20px;
+            }
         }
     }
 }

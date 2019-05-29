@@ -9,6 +9,7 @@ import strings from "../../resources/strings";
 
 // MARK: Stores
 import { uiStore } from "../_rootStore";
+import VariableChangeHandler from "../../resources/VariableChangeHandler";
 
 export interface IClass {
 	name: string;
@@ -35,12 +36,37 @@ export interface IComments {
 }
 {/* Tentativa de criar comentário*/}
 
-export default class ProfessorsStore {
+export default class ProfessorsStore extends VariableChangeHandler {
     @observable public selectedProfessor: api.Professor | null = null;
 	@observable public professors: api.Professor[] = [];
 
 	@observable public loading: boolean = false;
 	@observable public pageOffset: number = 0;
+
+	@observable public commentary: string = "";
+	@observable public commentaries = [
+		{
+			user: {
+				name: "Arthur Fernandes",
+				avatar: null as {url: string} | null,
+			},
+			commentary: "Excelente aula, finalmente entendi o assunto!",
+		},
+		{
+			user: {
+				name: "Filipe Arlindo",
+				avatar: null as {url: string} | null,
+			},
+			commentary: "Excelente aula, mas a prova é barril",
+		},
+		{
+			user: {
+				name: "Thiago Mariano",
+				avatar: null as {url: string} | null,
+			},
+			commentary: "Barril, ném vá",
+		},
+	];
 
     @action
     public selectProfessor = async (professorId: string) => {
@@ -99,5 +125,21 @@ export default class ProfessorsStore {
 	@action
 	public previousPage = async () => {
 		this.getProfessors(this.pageOffset - 1);
+	}
+
+	@action
+	public sendCommentary = async () => {
+		this.commentaries = [
+			{
+				user: {
+					name: "Arthur Fernandes",
+					avatar: null as {url: string} | null,
+				},
+				commentary: this.commentary,
+			},
+			...this.commentaries,
+		];
+
+		this.commentary = "";
 	}
 }

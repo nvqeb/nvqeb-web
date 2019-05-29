@@ -21,6 +21,8 @@ import SchoolClassesStore from "../../../stores/SchoolClassesStore";
 
 // MARK: Components
 import Typography from "@material-ui/core/Typography";
+import TextField from "../../../components/TextField";
+import Button from "../../../components/Button";
 
 interface IProps {
 	match: match<{ classId: string }>;
@@ -88,29 +90,7 @@ export default class SubjectsInfo extends React.Component<IProps> {
 						<Typography variant="h6">
 							{strings.pages.dashboard.subjectsInfo.commentariesContainer.title}
 						</Typography>
-						{[
-							{
-								user: {
-									name: "Arthur Fernandes",
-									avatar: null as {url: string} | null,
-								},
-								commentary: "Excelente aula, finalmente entendi o assunto!",
-							},
-							{
-								user: {
-									name: "Filipe Arlindo",
-									avatar: null as {url: string} | null,
-								},
-								commentary: "Excelente aula, mas a prova é barril",
-							},
-							{
-								user: {
-									name: "Thiago Mariano",
-									avatar: null as {url: string} | null,
-								},
-								commentary: "Barril, ném vá",
-							},
-						].map((userCommentary) => (
+						{schoolClassesStore.commentaries.map((userCommentary) => (
 							<div className="subjectInfoPageContainerCommentariesContainerCommentaryCard">
 								<img
 									className="subjectInfoPageContainerCommentariesContainerCommentaryCardAvatar"
@@ -126,6 +106,19 @@ export default class SubjectsInfo extends React.Component<IProps> {
 								</div>
 							</div>
 						))}
+						<div className="subjectInfoPageContainerCommentariesContainerInputContainer">
+							<TextField
+								label={strings.textFields.commentary}
+								name="commentary"
+								type="commentary"
+								value={schoolClassesStore.commentary}
+								disabled={schoolClassesStore.loading}
+								onChange={schoolClassesStore.handleValueChange}
+							/>
+							<Button
+								onClick={() => schoolClassesStore.sendCommentary()}
+							>{strings.buttons.commentary}</Button>
+						</div>
 					</div>
 				</div>
 			</div>
