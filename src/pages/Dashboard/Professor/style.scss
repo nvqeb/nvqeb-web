@@ -59,5 +59,57 @@
                 margin: 8px;
             }
         }
+        &CommentBox {
+            @include flex(row, center, center);
+            width: 300px;
+            padding-top: 20px;
+            flex-wrap: wrap;
+            @extend %card;
+
+            &InfoContainer {
+                @include flex(column, flex-start, flex-start);
+
+                &UserName {
+                    background-color: hotpink;
+                    width: 260px;
+                    padding-left: 10px;
+                    border-top-left-radius: 6px;
+                    border-top-right-radius: 6px;
+                }
+    
+                &Commentary {
+                    background-color: pink;
+                    margin-bottom: 20px;
+                    padding-left: 10px;
+                    border-bottom-left-radius: 6px;
+                    border-bottom-right-radius: 6px;
+                }
+            }
+
+            
+            &UserContainer {
+                @extend %card;
+                @include flex(row, flex-start, center);
+        
+                margin-top: 20px;
+                width: 60%;
+        
+                @media (max-width: $tablet) {
+                    width: 80%;
+                }
+        
+                @media (max-width: $mobile) {
+                    width: 90%;
+                }
+        
+                &Icon {
+                    
+                    border-radius: 50%;
+                    object-fit: cover;
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+        }
     }
 }

@@ -59,6 +59,14 @@ const strings = new LocalizedStrings({
                         hardness: (hardness: number) => `Dificuldade: ${hardness}`,
                     },
                 },
+                professoresDaMateria: {
+                    title: "Professores da matéria",
+                    path: "/",
+                    professorCard: {
+                        avatarAlt: (name: string) => `Avatar de ${name}`,
+                        hardness: (hardness: number) => `Dificuldade: ${hardness}`,
+                    },
+                },
                 professor: {
                     title: "Página do professor",
                     path: (professorId: string) => `/professors/${professorId}`,
@@ -76,14 +84,12 @@ const strings = new LocalizedStrings({
                         },
                     },
                 },
-<<<<<<< HEAD
                 comments: {
                     name: ["Arthur Fernandes", "Filipe Arlindo", "Thiago Mariano"],
                     commentary: ["Excelente aula, finalmente entendi o assunto!",
                                  "Excelente aula, mas a prova é barril",
                                  "Barril, ném vá"],
                 },
-=======
             },
             login: {
                 email: "Email",
@@ -91,7 +97,6 @@ const strings = new LocalizedStrings({
                 loginButton: "Entrar",
                 resetPasswordButton: "Recuperar Senha",
             },
->>>>>>> cdfa196cf014b9b20b2cf92e721c2e196709a01d
         },
         error: {
             default: "Erro de conexão",
@@ -107,7 +112,7 @@ const strings = new LocalizedStrings({
         },
     },
 },
-});
+);
 
 // api.setStrings(strings);
 

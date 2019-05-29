@@ -65,19 +65,12 @@ export default class ProfessorContainer extends React.Component<IProps> {
 						<div className="professorPageProfessorContainerInfoContainerTagsContainer">
 							{selectedProfessor.tags.map((tag, index) =>
 								<div
-<<<<<<< HEAD
-									className="professorPageProfessorContainerClassesContainerClassCard"
-									id={`professorPageProfessorContainerClassesContainerClassCard-${professorClass.id}`}
-									onClick={() => {
-										routerStore.push(`/classes/SubjectsInfo`);
-=======
 									key={`${selectedProfessor.id}-tag-${index}`}
 									style={{
 										backgroundColor: ["pink", "deeppink", "hotpink", "lightpink", "magenta", "violet", "orchid"][index % 7],
 										padding: "4px",
 										margin: "4px",
 										borderRadius: "4px",
->>>>>>> cdfa196cf014b9b20b2cf92e721c2e196709a01d
 									}}
 								>
 									<Typography
@@ -113,12 +106,11 @@ export default class ProfessorContainer extends React.Component<IProps> {
 									</Typography>
 									<Typography variant="body1">
 										{strings.pages.dashboard.professor.professorInfo.classes.classCard.scores.max(professorClass.scores.max)}
-<<<<<<< HEAD
-									</Typography>
-								</div>
-							))}
-						</div>
-						<div className="professorPageProfessorContainerCommentBox">
+									</Typography> */}
+							</div>
+						))}
+					</div>
+					<div className="professorPageProfessorContainerCommentBox">
 						{[
 						{
 							name: "Arthur Fernandes",
@@ -135,23 +127,31 @@ export default class ProfessorContainer extends React.Component<IProps> {
 						].map((userCommentary) => (
 							<>
 								<div>
-										<Typography variant="body1">
+										<img
+										className="professorPageProfessorContainerCommentBoxUserContainerIcon"
+										src={selectedProfessor.avatar ? selectedProfessor.avatar.url : "/userPlaceholder.svg"}
+										/>
+										<div className="professorPageProfessorContainerCommentBoxInfoContainerUserName">
+										<Typography variant="body1"
+										style={{
+											color: "white",
+											fontSize: 17,
+										}}>
 										{userCommentary.name}
 										<br></br>
+										</Typography>
+										</div>
+										<div className="professorPageProfessorContainerCommentBoxInfoContainerCommentary">
+										<Typography variant="body1">
 										{userCommentary.commentary}
 										<br></br><br></br>
 										</Typography>
+										</div>
 								</div>
 							</>
 						))
 						},
 						</div>
-=======
-									</Typography> */}
-							</div>
-						))}
->>>>>>> cdfa196cf014b9b20b2cf92e721c2e196709a01d
-					</div>
 				</div>
 			</div>
 		);
