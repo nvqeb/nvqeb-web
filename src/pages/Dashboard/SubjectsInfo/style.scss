@@ -6,7 +6,7 @@
     @include flex(column, flex-start, center);
     width: 100%;
     padding-top: 20px;
-    
+
     &Container {
         @extend %card;
 
@@ -36,8 +36,12 @@
 
             &ProfessorCard {
                 @extend %card;
-                @include flex(row, flex-start, center);
-
+                @include flex(row, flex-start, flex-start);
+                * {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
                 cursor: pointer;
                 width: 300px;
                 margin: 8px;

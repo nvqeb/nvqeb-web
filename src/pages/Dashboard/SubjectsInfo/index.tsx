@@ -44,8 +44,6 @@ export default class SubjectsInfo extends React.Component<IProps> {
 		const { selectedSchoolClass, selectedSchoolClassProfessores } = schoolClassesStore;
 
 		if (!selectedSchoolClass) {
-			routerStore.push("/");
-
 			return <></>;
 		}
 
@@ -78,9 +76,6 @@ export default class SubjectsInfo extends React.Component<IProps> {
 								<div>
 									<Typography variant="subtitle1">
 										{professor.name}
-									</Typography>
-									<Typography variant="body1">
-										{professor.tags}
 									</Typography>
 									<Typography variant="body1">
 										{strings.pages.dashboard.professors.professorCard.hardness(professor.hardness)}

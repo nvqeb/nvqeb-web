@@ -66482,8 +66482,6 @@ function (_super) {
     var selectedProfessor = this.props.professorsStore.selectedProfessor;
 
     if (!selectedProfessor) {
-      _rootStore.routerStore.push("/");
-
       return React.createElement(React.Fragment, null);
     }
 
@@ -66655,7 +66653,6 @@ function (_super) {
         selectedSchoolClassProfessores = schoolClassesStore.selectedSchoolClassProfessores;
 
     if (!selectedSchoolClass) {
-      routerStore.push("/");
       return React.createElement(React.Fragment, null);
     }
 
@@ -66687,8 +66684,6 @@ function (_super) {
       }), React.createElement("div", null, React.createElement(_Typography.default, {
         variant: "subtitle1"
       }, professor.name), React.createElement(_Typography.default, {
-        variant: "body1"
-      }, professor.tags), React.createElement(_Typography.default, {
         variant: "body1"
       }, _strings.default.pages.dashboard.professors.professorCard.hardness(professor.hardness))));
     })), React.createElement("div", {
@@ -101348,7 +101343,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41837" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51972" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

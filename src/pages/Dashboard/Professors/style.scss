@@ -25,6 +25,12 @@
             @extend %card;
             @include flex(row, flex-start, center);
 
+            * {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
             cursor: pointer;
             width: 300px;
             margin: 8px;

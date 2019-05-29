@@ -39,8 +39,6 @@ export default class ProfessorContainer extends React.Component<IProps> {
 		const { selectedProfessor } = this.props.professorsStore;
 
 		if (!selectedProfessor) {
-			routerStore.push("/");
-
 			return <></>;
 		}
 
