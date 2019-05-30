@@ -44,29 +44,7 @@ export default class ProfessorsStore extends VariableChangeHandler {
 	@observable public pageOffset: number = 0;
 
 	@observable public commentary: string = "";
-	@observable public commentaries = [
-		{
-			user: {
-				name: "Arthur Fernandes",
-				avatar: null as {url: string} | null,
-			},
-			commentary: "Excelente aula, finalmente entendi o assunto!",
-		},
-		{
-			user: {
-				name: "Filipe Arlindo",
-				avatar: null as {url: string} | null,
-			},
-			commentary: "Excelente aula, mas a prova é barril",
-		},
-		{
-			user: {
-				name: "Thiago Mariano",
-				avatar: null as {url: string} | null,
-			},
-			commentary: "Barril, ném vá",
-		},
-	];
+	@observable public commentaries: api.Commentary[] = [];
 
     @action
     public selectProfessor = async (professorId: string) => {
@@ -128,18 +106,57 @@ export default class ProfessorsStore extends VariableChangeHandler {
 	}
 
 	@action
-	public sendCommentary = async () => {
-		this.commentaries = [
-			{
-				user: {
-					name: "Arthur Fernandes",
-					avatar: null as {url: string} | null,
-				},
-				commentary: this.commentary,
-			},
-			...this.commentaries,
-		];
+	public getCommentariesForProfessor = async () => {
+		if (this.loading) {
+            return;
+		}
 
-		this.commentary = "";
+		if (!this.selectedProfessor) {
+			return;
+		}
+
+		this.loading = true;
+
+        try {
+			this.commentaries = await api.getCommentariesForProfessor(this.selectedProfessor.id);
+        } catch (e) {
+            uiStore.openErrorSnackbar(e);
+        } finally {
+            this.loading = false;
+        }
+	}
+
+	@action
+	public sendCommentary = async () => {
+		if (this.loading) {
+            return;
+		}
+
+		if (!this.selectedProfessor) {
+			return;
+		}
+
+		this.loading = true;
+
+        try {
+			const newCommentary = await api.createCommentary({
+				text: this.commentary,
+				professorId: this.selectedProfessor.id,
+				schoolClassId: null,
+			});
+
+			this.commentaries = [newCommentary, ...this.commentaries];
+        } catch (e) {
+            uiStore.openErrorSnackbar(e);
+        } finally {
+            this.loading = false;
+			this.commentary = "";
+        }
+	}
+
+	@action
+	public clear = async () => {
+		this.selectedProfessor = null;
+		this.commentaries = [];
 	}
 }

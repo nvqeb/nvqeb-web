@@ -13,12 +13,13 @@ import strings from "../../../resources/strings";
 
 // MARK: Stores
 import ProfessorsStore from "../../../stores/ProfessorsStore";
-import { routerStore, professorsStore } from "../../../stores/_rootStore";
+import { routerStore } from "../../../stores/_rootStore";
 
 // MARK: Components
 import Typography from "@material-ui/core/Typography";
 import TextField from "../../../components/TextField";
 import Button from "../../../components/Button";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 interface IProps {
 	match: match<{ professorId: string }>;
@@ -31,19 +32,23 @@ export default class ProfessorContainer extends React.Component<IProps> {
 	public componentDidMount = async () => {
 		const { professorId } = this.props.match.params;
 
+		await this.props.professorsStore.clear();
 		await this.props.professorsStore.selectProfessor(professorId);
+		await this.props.professorsStore.getCommentariesForProfessor();
 	}
 
 	public render() {
-		const { selectedProfessor } = this.props.professorsStore;
+		const { professorsStore } = this.props;
+		const { selectedProfessor } = professorsStore;
 
 		if (!selectedProfessor) {
-			return <></>;
+			return <LinearProgress />;
 		}
 
 		return (
 			<div className="professorPage">
 				<div className="professorPageProfessorContainer">
+					{professorsStore.loading && <LinearProgress />}
 					<div className="professorPageProfessorContainerInfoContainer">
 						<img
 							className="professorPageProfessorContainerAvatar"
@@ -105,25 +110,29 @@ export default class ProfessorContainer extends React.Component<IProps> {
 						))}
 					</div>
 					<div className="professorPageProfessorContainerCommentariesContainer">
-						<Typography variant="h6">
-							{strings.pages.dashboard.subjectsInfo.commentariesContainer.title}
-						</Typography>
-						{professorsStore.commentaries.map((userCommentary) => (
-							<div className="professorPageProfessorContainerCommentariesContainerCommentaryCard">
-								<img
-									className="professorPageProfessorContainerCommentariesContainerCommentaryCardAvatar"
-									src={userCommentary.user.avatar ? userCommentary.user.avatar.url : "/userPlaceholder.svg"}
-								/>
-								<div className="professorPageProfessorContainerCommentariesContainerCommentaryCardInfoContainer">
-									<Typography variant="subtitle1">
-										{userCommentary.user.name}
-									</Typography>
-									<Typography variant="body1">
-										{userCommentary.commentary}
-									</Typography>
-								</div>
-							</div>
-						))}
+						{professorsStore.commentaries.length > 0 &&
+							<>
+								<Typography variant="h6">
+									{strings.pages.dashboard.subjectsInfo.commentariesContainer.title}
+								</Typography>
+								{professorsStore.commentaries.map((userCommentary) => (
+									<div className="professorPageProfessorContainerCommentariesContainerCommentaryCard">
+										<img
+											className="professorPageProfessorContainerCommentariesContainerCommentaryCardAvatar"
+											src={userCommentary.user.avatar ? userCommentary.user.avatar.url : "/userPlaceholder.svg"}
+										/>
+										<div className="professorPageProfessorContainerCommentariesContainerCommentaryCardInfoContainer">
+											<Typography variant="subtitle1">
+												{userCommentary.user.name}
+											</Typography>
+											<Typography variant="body1">
+												{userCommentary.text}
+											</Typography>
+										</div>
+									</div>
+								))}
+							</>
+						}
 						<div className="professorPageProfessorContainerCommentariesContainerInputContainer">
 							<TextField
 								label={strings.textFields.commentary}
@@ -140,6 +149,9 @@ export default class ProfessorContainer extends React.Component<IProps> {
 								onClick={() => {
 									routerStore.push(`/classes/new`);
 								}}>Teste</Button>
+								disabled={professorsStore.loading}
+							>
+								{strings.buttons.commentary}
 						</div>
 					</div>
 				</div>
