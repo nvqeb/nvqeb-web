@@ -145,13 +145,13 @@ export default class ProfessorContainer extends React.Component<IProps> {
 							<Button
 								onClick={() => professorsStore.sendCommentary()}
 							>{strings.buttons.commentary}</Button>
-							<Button
+								{/*disabled={professorsStore.loading}
+							>
+					{strings.buttons.commentary}*/}
+								<Button
 								onClick={() => {
 									routerStore.push(`/classes/new`);
 								}}>Teste</Button>
-								disabled={professorsStore.loading}
-							>
-								{strings.buttons.commentary}
 						</div>
 					</div>
 				</div>

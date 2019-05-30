@@ -32,30 +32,35 @@ export default class ProfessorContainer extends React.Component<IProps> {
 	public render() {
 
 		return (
-			<div className="createClassPage">
+			<div className="createAccountPage">
 				<Typography variant="h4">
-					Adicionar Matéria
+					Criar Conta
 				</Typography>
-				<div className="createClassPageInfoContainer">
+				<div className="createAccountPageInfoContainer">
 					<TextField
-					label={strings.textFields.subject}
-					name="subject"
+					label={strings.textFields.name}
+					name="name"
 					type="text"
 				/>
 				<TextField
-					label={strings.textFields.subjectCode}
-					name="subjectCode"
+					label={strings.textFields.lastname}
+					name="lastname"
 					type="text"
 				/>
 				<TextField
-					label={strings.textFields.subjectProfessors}
-					name="subjectProfessors"
+					label={strings.textFields.course}
+					name="course"
 					type="text"
 				/>
 				<TextField
-					label={strings.textFields.subjectDescpription}
-					name="subjectDescpription"
+					label={strings.textFields.email}
+					name="email"
 					type="text"
+				/>
+				<TextField
+					label={strings.textFields.password}
+					name="password"
+					type="password"
 				/>
 				</div>
 				<Button>

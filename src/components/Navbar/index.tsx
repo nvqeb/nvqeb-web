@@ -91,6 +91,18 @@ export default class Navbar extends React.Component<IProps, IState> {
                             <ListItemIcon><DashboardIcon /></ListItemIcon>
                             <ListItemText primary={strings.navbar.home} />
                         </ListItem>
+                        <ListItem button onClick={() => this.onItemClick("/classes/new")}>
+                            <ListItemIcon><DashboardIcon /></ListItemIcon>
+                            <ListItemText primary={strings.navbar.subject} />
+                        </ListItem>
+                        <ListItem button onClick={() => this.onItemClick("/professors/new")}>
+                            <ListItemIcon><DashboardIcon /></ListItemIcon>
+                            <ListItemText primary={strings.navbar.professor} />
+                        </ListItem>
+                        <ListItem button onClick={() => this.onItemClick("/createAccount")}>
+                            <ListItemIcon><DashboardIcon /></ListItemIcon>
+                            <ListItemText primary={strings.navbar.account} />
+                        </ListItem>
                         <ListItem button onClick={this.props.authStore.logout}>
                             <ListItemIcon><KeyboardReturn /></ListItemIcon>
                             <ListItemText primary={strings.navbar.logout} />

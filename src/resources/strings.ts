@@ -65,6 +65,9 @@ const strings = new LocalizedStrings({
             title: "Não vá que é barril",
             home: "Home",
             logout: "Sair",
+            account: "Criar conta",
+            professor: "Adicionar Professor",
+            subject: "Adicionar Matéria",
         },
         pages: {
             dashboard: {
