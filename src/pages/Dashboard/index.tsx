@@ -23,6 +23,7 @@ import Alert from "../../components/Alert";
 import Dialog from "../../components/Dialog";
 import Snackbar from "../../components/SnackBar";
 import LoadingDialog from "../../components/LoadingDialog";
+import CreateClassPage from "./CreateClassPage";
 
 interface IProps {
 	routerStore: RouterStore;
@@ -48,7 +49,9 @@ export default class Dashboard extends React.Component<IProps> {
 					<Route exact path="/" component={ProfessorsPage} />
 					<Route exact path="/professors" component={ProfessorPage} />
 					<Route path="/professors/:professorId" component={ProfessorPage} />
+					<Route exact path="/classes/new" component={CreateClassPage} />
 					<Route path="/classes/:classId" component={SubjectsInfoPage} />
+
 				</Switch>
 				<Alert uiStore={uiStore} />
 				<Dialog uiStore={uiStore} />

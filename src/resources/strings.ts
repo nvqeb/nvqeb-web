@@ -5,11 +5,24 @@ const strings = new LocalizedStrings({
     ptBR: {
         textFields: {
             commentary: "Comentário",
+            subject: "Matéria",
+            subjectCode: "Código da matéria",
+            subjectProfessors: "Professores",
+            subjectDescpription: "Descrição",
+            professor: "Nome",
+            professorSubject: "Matérias que ensina",
+            professorTags: "Características",
+            name: "Nome",
+            lastname: "Sobrenome",
+            course: "Curso",
+            email: "Email",
+            password: "Senha",
         },
         buttons: {
             next: "Próximo",
             previous: "Anteior",
             commentary: "Comentar",
+            submit: "Enviar",
         },
         components: {
             image: {
@@ -91,6 +104,10 @@ const strings = new LocalizedStrings({
                             },
                         },
                     },
+                },
+                createClassesPage: {
+                    title : "Adicionar Matéria",
+                    name : "",
                 },
                 comments: {
                     name: ["Arthur Fernandes", "Filipe Arlindo", "Thiago Mariano"],
