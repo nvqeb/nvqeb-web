@@ -12,8 +12,7 @@ import { observer, inject } from "mobx-react";
 import strings from "../../../resources/strings";
 
 // MARK: Stores
-import ProfessorsStore from "../../../stores/ProfessorsStore";
-import { routerStore, professorsStore } from "../../../stores/_rootStore";
+import SchoolClassesStore from "../../../stores/SchoolClassesStore";
 
 // MARK: Components
 import Typography from "@material-ui/core/Typography";
@@ -22,13 +21,15 @@ import Button from "../../../components/Button";
 
 interface IProps {
 	match: match<{ professorId: string }>;
-	professorsStore: ProfessorsStore;
+	schoolClassesStore: SchoolClassesStore;
 }
 
-@inject("routerStore", "uiStore", "professorsStore")
+@inject("routerStore", "uiStore", "schoolClassesStore")
 @observer
 export default class CreateClassPage extends React.Component<IProps> {
 	public render() {
+		const { schoolClassesStore } = this.props;
+
 		return (
 			<div className="createClassPage">
 				<Typography variant="h4">
@@ -36,28 +37,32 @@ export default class CreateClassPage extends React.Component<IProps> {
 				</Typography>
 				<div className="createClassPageInfoContainer">
 					<TextField
-					label={strings.textFields.subject}
-					name="subject"
-					type="text"
-				/>
-				<TextField
-					label={strings.textFields.subjectCode}
-					name="subjectCode"
-					type="text"
-				/>
-				<TextField
-					label={strings.textFields.subjectProfessors}
-					name="subjectProfessors"
-					type="text"
-				/>
-				<TextField
-					label={strings.textFields.subjectDescpription}
-					name="subjectDescpription"
-					type="text"
-				/>
+						label={strings.textFields.subject}
+						name="name"
+						value={schoolClassesStore.name}
+						onChange={schoolClassesStore.handleValueChange}
+						disabled={schoolClassesStore.loading}
+					/>
+					<TextField
+						label={strings.textFields.subjectCode}
+						name="id"
+						value={schoolClassesStore.id}
+						onChange={schoolClassesStore.handleValueChange}
+						disabled={schoolClassesStore.loading}
+					/>
+					<TextField
+						label={strings.textFields.subjectDescpription}
+						name="description"
+						value={schoolClassesStore.description}
+						onChange={schoolClassesStore.handleValueChange}
+						disabled={schoolClassesStore.loading}
+					/>
 				</div>
-				<Button>
-				{strings.buttons.submit}</Button>
+				<Button
+					onClick={() => schoolClassesStore.createSchoolClass()}
+				>
+					{strings.buttons.submit}
+				</Button>
 			</div>
 		);
 	}

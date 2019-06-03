@@ -15,6 +15,10 @@ export default class SchoolClassesStore extends VariableChangeHandler {
 	@observable public selectedSchoolClass: api.SchoolClass | null = null;
 	@observable public loading: boolean = false;
 
+	@observable public id: string = "";
+	@observable public name: string = "";
+	@observable public description: string = "";
+
 	@observable public selectedSchoolClassProfessores: api.Professor[] = [];
 
 	@observable public commentary: string = "";
@@ -30,6 +34,27 @@ export default class SchoolClassesStore extends VariableChangeHandler {
 
 		try {
 			this.selectedSchoolClass = await api.getSchoolClass(schoolClassId);
+		} catch (e) {
+			uiStore.openErrorSnackbar(e);
+		} finally {
+			this.loading = false;
+		}
+	}
+
+	@action
+	public createSchoolClass = async () => {
+		if (this.loading) {
+			return;
+		}
+
+		this.loading = true;
+
+		try {
+			await api.createSchoolClass({
+				id: this.id.trim(),
+				name: this.name.trim(),
+				description: this.description.trim(),
+			});
 		} catch (e) {
 			uiStore.openErrorSnackbar(e);
 		} finally {
