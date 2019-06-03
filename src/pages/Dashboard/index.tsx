@@ -12,9 +12,9 @@ import UIStore from "../../stores/UIStore";
 import AuthStore from "../../stores/AuthStore";
 
 // MARK: Pages
-import ProfessorsPage from "./Professors";
-import ProfessorPage from "./Professor";
-import SubjectsInfoPage from "./SubjectsInfo";
+import ProfessorsPage from "./ProfessorsPage";
+import ProfessorPage from "./ProfessorPage";
+import SubjectsInfoPage from "./SubjectsInfoPage";
 
 // MARK: Components
 import Navbar from "../../components/Navbar";

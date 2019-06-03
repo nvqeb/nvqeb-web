@@ -27,10 +27,8 @@ interface IProps {
 
 @inject("routerStore", "uiStore", "professorsStore")
 @observer
-export default class ProfessorContainer extends React.Component<IProps> {
-
+export default class CreateClassPage extends React.Component<IProps> {
 	public render() {
-
 		return (
 			<div className="createClassPage">
 				<Typography variant="h4">
@@ -64,21 +62,3 @@ export default class ProfessorContainer extends React.Component<IProps> {
 		);
 	}
 }
-{/*
-				<TextField
-					label={strings.textFields.professor}
-					name="professor"
-					type="text"
-				/>
-				<TextField
-					label={strings.textFields.professorSubject}
-					name="professorSubject"
-					type="text"
-				/>
-				<TextField
-					label={strings.textFields.professorTags}
-					name="professorTags"
-					type="text"
-				/>
-				<Button
->{strings.buttons.submit}</Button> */}

@@ -34,7 +34,7 @@ interface IProps {
 
 @inject("routerStore", "uiStore", "schoolClassesStore")
 @observer
-export default class SubjectsInfo extends React.Component<IProps> {
+export default class SubjectsInfoPage extends React.Component<IProps> {
 	public componentDidMount = async () => {
 		const { classId } = this.props.match.params;
 

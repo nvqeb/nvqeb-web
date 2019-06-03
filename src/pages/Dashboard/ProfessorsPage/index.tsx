@@ -25,11 +25,12 @@ interface IProps {
 
 @inject("routerStore", "uiStore", "professorsStore")
 @observer
-export default class ProfessorsContainer extends React.Component<IProps> {
+export default class ProfessorsPage extends React.Component<IProps> {
 	public componentWillMount = async () => {
 		const { professorsStore } = this.props;
 		await professorsStore.getProfessors();
 	}
+
 	public render() {
 		const { routerStore, professorsStore } = this.props;
 		const { professors, pageOffset } = professorsStore;
