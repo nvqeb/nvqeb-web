@@ -915,9 +915,9 @@
     physical-cpu-count "^2.0.0"
 
 "@startapp/nvqeb-user-api@^1.0.3183":
-  version "1.0.3220"
-  resolved "https://npm.startapp.one/@startapp%2fnvqeb-user-api/-/nvqeb-user-api-1.0.3220.tgz#dcc47ca6ea596a18a673ce9f3d9c24c42587ae3b"
-  integrity sha512-io/lP8bkwBmf7eJLb7jYlMqC/qqBIlIQPAqh9N6WWnyys8kPlkm1mx8OdbFRf10gvOgPzJbjPO3dJDOgpPmVdg==
+  version "1.0.3242"
+  resolved "https://npm.startapp.one/@startapp%2fnvqeb-user-api/-/nvqeb-user-api-1.0.3242.tgz#bfe8b67cbb0445560947578bba50a3136d767fc9"
+  integrity sha512-yjiIwBgoUmRms9MQwz9aWFQ+BtSAguMYIRPo0IT034/nSP2Cgb0PY+6OnHHEl/mWL1wU4WvYmHo5qNAFkP8UvA==
   dependencies:
     "@types/node" "^8.0.29"
     "@types/ua-parser-js" "^0.7.32"
@@ -945,9 +945,9 @@
   integrity sha512-szA3x/3miL90ZJxUCzx9haNbK5/zmPieGraZEe4WI+3srN0eGLiT22NXeMHmyhNEopn+IrxqMc7wdVwvPl8meg==
 
 "@types/node@^8.0.29":
-  version "8.10.48"
-  resolved "https://npm.startapp.one/@types%2fnode/-/node-8.10.48.tgz#e385073561643a9ba6199a1985ffc03530f90781"
-  integrity sha512-c35YEBTkL4rzXY2ucpSKy+UYHjUBIIkuJbWYbsGIrKLEWU5dgJMmLkkIb3qeC3O3Tpb1ZQCwecscvJTDjDjkRw==
+  version "8.10.49"
+  resolved "https://npm.startapp.one/@types%2fnode/-/node-8.10.49.tgz#f331afc5efed0796798e5591d6e0ece636969b7b"
+  integrity sha512-YX30JVx0PvSmJ3Eqr74fYLGeBxD+C7vIL20ek+GGGLJeUbVYRUW3EzyAXpIRA0K8c8o0UWqR/GwEFYiFoz1T8w==
 
 "@types/papaparse@^4.5.9":
   version "4.5.9"

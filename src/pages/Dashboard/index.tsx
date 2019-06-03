@@ -24,7 +24,6 @@ import Dialog from "../../components/Dialog";
 import Snackbar from "../../components/SnackBar";
 import LoadingDialog from "../../components/LoadingDialog";
 import CreateClassPage from "./CreateClassPage";
-import AccountPage from "./AccountPage";
 import CreateProfessorPage from "./CreateProfessorPage";
 
 interface IProps {
@@ -41,7 +40,7 @@ export default class Dashboard extends React.Component<IProps> {
 	}
 
 	public render() {
-		const { uiStore, routerStore } = this.props;
+		const { uiStore } = this.props;
 
 		return (
 			<>
@@ -54,7 +53,6 @@ export default class Dashboard extends React.Component<IProps> {
 					<Route path="/professors/:professorId" component={ProfessorPage} />
 					<Route exact path="/classes/new" component={CreateClassPage} />
 					<Route path="/classes/:classId" component={SubjectsInfoPage} />
-					<Route exact path="/createAccount" component={AccountPage} />
 				</Switch>
 				<Alert uiStore={uiStore} />
 				<Dialog uiStore={uiStore} />

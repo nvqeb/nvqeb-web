@@ -123,6 +123,7 @@ const strings = new LocalizedStrings({
                 email: "Email",
                 password: "Password",
                 loginButton: "Entrar",
+                createAccountButton: "Criar Conta",
                 resetPasswordButton: "Recuperar Senha",
             },
         },

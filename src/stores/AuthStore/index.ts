@@ -20,6 +20,8 @@ export default class AuthStore extends VariableChangeHandler {
 	@observable public loading: boolean = false;
 	@observable public email: string = "";
 	@observable public password: string = "";
+	@observable public name: string = "";
+	@observable public course: string = "";
 
 	constructor() {
 		super();
@@ -42,6 +44,28 @@ export default class AuthStore extends VariableChangeHandler {
 				this.email.trim(),
 				this.password.trim(),
 			);
+
+			localStorage.setItem("user", JSON.stringify(this.user as api.User));
+			routerStore.push("/");
+		} catch (e) {
+			uiStore.openSnackbar(handleError(e));
+		} finally {
+			this.loading = false;
+		}
+	}
+
+	@action
+	public createAccount = async () => {
+		this.loading = true;
+
+		try {
+			this.user = await api.createUser({
+				avatar: null,
+				name: this.name.trim(),
+				course: this.course.trim(),
+				email: this.email.trim(),
+				password: this.password.trim(),
+			});
 
 			localStorage.setItem("user", JSON.stringify(this.user as api.User));
 			routerStore.push("/");
