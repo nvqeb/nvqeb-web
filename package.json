@@ -30,7 +30,7 @@
         "mobx-react": "^5.4.3",
         "mobx-react-router": "^4.0.5",
         "moment": "^2.20.1",
-        "papaparse": "^4.6.3",
+        "papaparse": "^5.2.0",
         "react": ">=15.0.0",
         "react-dom": ">=15.0.0",
         "react-image-crop": "^6.0.18",
