@@ -29,7 +29,7 @@
         "mobx": "^5.9.0",
         "mobx-react": "^5.4.3",
         "mobx-react-router": "^4.0.5",
-        "moment": "^2.20.1",
+        "moment": "^2.29.4",
         "papaparse": "^4.6.3",
         "react": ">=15.0.0",
         "react-dom": ">=15.0.0",
